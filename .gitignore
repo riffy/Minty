@@ -1,0 +1,12 @@
+# Bin and Obj directories of projects
+
+bin/
+obj/
+
+Dist/
+
+.vs/
+.idea/
+
+appsettings.json
+/.run
