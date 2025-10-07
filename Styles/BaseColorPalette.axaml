@@ -3,7 +3,8 @@
 	<ResourceDictionary.ThemeDictionaries>
 		<ResourceDictionary x:Key="Default">
 			<!-- default foreground color -->
-			<Color x:Key="MintForegroundColor">hsl(140, 41%, 95%)</Color>
+			<Color x:Key="MintForegroundColor">hsl(144, 0%, 100%)</Color>
+			<Color x:Key="MintForegroundColorDisabled">hsl(144, 0%, 50%)</Color>
 			<!-- default background colors -->
 			<Color x:Key="MintPrimaryBackgroundColor">#131313</Color>
 			<Color x:Key="MintSecondaryBackgroundColor">#202020</Color>

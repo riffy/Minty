@@ -71,6 +71,7 @@
 
     <Style Selector="^:disabled /template/ ContentPresenter#PART_ContentPresenter">
       <Setter Property="Background" Value="{DynamicResource MintPrimaryColorDisabled}" />
+      <Setter Property="Foreground" Value="{DynamicResource MintForegroundColorDisabled}" />
     </Style>
 
     <Style Selector="^.info">
