@@ -2,25 +2,40 @@ namespace Minty;
 
 public class ViewLocator : IDataTemplate
 {
+	private IServiceProvider? _serviceProvider;
 
-    public Control? Build(object? param)
-    {
-        if (param is null)
-            return null;
+	/// <summary>
+	///     Build the control to display.
+	/// </summary>
+	public Control? Build(object? param)
+	{
+		if (param is null) return null;
+		_serviceProvider ??= ((App)Application.Current!).Services!;
 
-        var name = param.GetType().FullName!.Replace("ViewModel", "View", StringComparison.Ordinal);
-        var type = Type.GetType(name);
+		var name = param.GetType().FullName;
+		if (name is null) return null;
 
-        if (type != null)
-        {
-            return (Control)Activator.CreateInstance(type)!;
-        }
+		// Strip ending "ViewModel"
+		if (name.EndsWith("ViewModel"))
+			name = name[..^"ViewModel".Length];
 
-        return new TextBlock { Text = "Not Found: " + name };
-    }
+		// Replace namespace "ViewModels" with "Views"
+		name = name.Replace("ViewModel", "View");
+		var type = Type.GetType(name);
+		if (type == null)
+			return new TextBlock { Text = "Not Found: " + name };
 
-    public bool Match(object? data)
-    {
-        return data is ViewModelBase;
-    }
+		Control? control;
+		if (_serviceProvider.GetService(type) is Control registeredControl)
+			control = registeredControl;
+		else
+			control = ActivatorUtilities.CreateInstance(_serviceProvider, type) as Control;
+		control!.DataContext = param;
+		return control;
+	}
+
+	public bool Match(object? data)
+	{
+		return data is ViewModelBase;
+	}
 }

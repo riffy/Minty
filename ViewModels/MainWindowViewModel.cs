@@ -1,6 +1,7 @@
 ﻿namespace Minty.ViewModels;
 
-public partial class MainWindowViewModel : ViewModelBase
+[RegisterSingleton]
+public class MainWindowViewModel : ViewModelBase
 {
-    public string Greeting { get; } = "Welcome to Avalonia!";
+	public string Greeting { get; } = "Welcome to Avalonia!";
 }
