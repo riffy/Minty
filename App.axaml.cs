@@ -4,6 +4,12 @@ public class App : Application
 {
 	public IServiceProvider? Services { get; private set; }
 
+	/// <summary>
+	/// Shorthand for <see cref="Services"/>
+	/// </summary>
+	public static IServiceProvider? ServiceProvider =>
+		((App)Current)?.Services;
+
 	public override void Initialize()
 	{
 		AvaloniaXamlLoader.Load(this);

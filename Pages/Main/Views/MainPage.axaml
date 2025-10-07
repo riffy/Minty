@@ -1,0 +1,69 @@
+<UserControl
+	xmlns="https://github.com/avaloniaui"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:ui="clr-namespace:FluentAvalonia.UI.Controls;assembly=FluentAvalonia"
+	xmlns:vm="using:Minty.Pages.Main.ViewModels"
+	mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+	x:Class="Minty.Pages.Main.Views.MainPage"
+	x:DataType="vm:MainPageViewModel">
+	<Grid RowDefinitions="Auto, *">
+		<!-- Top Bar -->
+		<Grid
+			Name="TitleBarHost"
+			ColumnDefinitions="Auto, Auto, *, Auto"
+			Background="Transparent"
+			Margin="10, 0, 10, 0">
+			<Image
+				Margin="12 4"
+				IsHitTestVisible="False"
+				Source="/Assets/avalonia-logo.ico"
+				Width="18" Height="18"
+				DockPanel.Dock="Left"
+				Name="WindowIcon"
+				RenderOptions.BitmapInterpolationMode="HighQuality">
+				<Image.IsVisible>
+					<OnPlatform Default="False">
+						<On Options="Windows" Content="True" />
+					</OnPlatform>
+				</Image.IsVisible>
+			</Image>
+			<TextBlock
+				Text="{Binding Title, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+				FontSize="16"
+				IsHitTestVisible="False"
+				VerticalAlignment="Center"
+				Grid.Column="1">
+				<TextBlock.IsVisible>
+					<OnPlatform Default="False">
+						<On Options="Windows" Content="True" />
+					</OnPlatform>
+				</TextBlock.IsVisible>
+			</TextBlock>
+			<Border
+				Grid.Column="2"
+				Padding="6">
+				<AutoCompleteBox
+					Name="SearchBox"
+					MaxWidth="500"
+					Watermark="Search"
+					FilterMode="ContainsOrdinal">
+					<AutoCompleteBox.InnerRightContent>
+						<StackPanel
+							Orientation="Horizontal">
+							<Button
+								Margin="0, 5, 10, 5"
+								IsEnabled="False">
+								<Button.Content>
+									<ui:SymbolIcon Symbol="Zoom"/>
+								</Button.Content>
+							</Button>
+						</StackPanel>
+					</AutoCompleteBox.InnerRightContent>
+				</AutoCompleteBox>
+			</Border>
+		</Grid>
+	</Grid>
+</UserControl>
+

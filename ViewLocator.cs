@@ -11,6 +11,7 @@ public class ViewLocator : IDataTemplate
 	{
 		if (param is null) return null;
 		_serviceProvider ??= ((App)Application.Current!).Services!;
+		if (_serviceProvider is null) return null;
 
 		var name = param.GetType().FullName;
 		if (name is null) return null;
@@ -34,8 +35,6 @@ public class ViewLocator : IDataTemplate
 		return control;
 	}
 
-	public bool Match(object? data)
-	{
-		return data is ViewModelBase;
-	}
+	public bool Match(object? data) =>
+		data is ViewModelBase;
 }

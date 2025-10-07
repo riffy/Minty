@@ -28,7 +28,6 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<Folder Include="Models\"/>
 		<AvaloniaResource Include="Assets\**"/>
 	</ItemGroup>
 
@@ -46,5 +45,16 @@
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0"/>
 		<PackageReference Include="FluentAvaloniaUI" Version="2.4.0"/>
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.9"/>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Services\Logs\Events\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="Windows\Main\Views\MainWindow.axaml.cs">
+	    <DependentUpon>MainWindow.axaml</DependentUpon>
+	    <SubType>Code</SubType>
+	  </Compile>
 	</ItemGroup>
 </Project>
