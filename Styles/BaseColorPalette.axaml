@@ -1,0 +1,33 @@
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+	<ResourceDictionary.ThemeDictionaries>
+		<ResourceDictionary x:Key="Default">
+			<!-- default foreground color -->
+			<Color x:Key="MintForegroundColor">hsl(140, 41%, 95%)</Color>
+			<!-- default background colors -->
+			<Color x:Key="MintPrimaryBackgroundColor">#131313</Color>
+			<Color x:Key="MintSecondaryBackgroundColor">#202020</Color>
+			<!-- default primary colors -->
+			<Color x:Key="MintPrimaryColor">hsl(137, 33%, 50%)</Color>
+			<Color x:Key="MintPrimaryColorHover">hsl(137, 33%, 40%)</Color>
+			<Color x:Key="MintPrimaryColorPressed">hsl(137, 33%, 30%)</Color>
+			<Color x:Key="MintPrimaryColorDisabled">hsla(137, 5%, 50%, 75%)</Color>
+			<!-- default info colors -->
+			<Color x:Key="MintInfoColor">hsl(207, 56%, 50%)</Color>
+			<Color x:Key="MintInfoColorHover">hsl(207, 56%, 40%)</Color>
+			<Color x:Key="MintInfoColorPressed">hsl(207, 56%, 30%)</Color>
+			<Color x:Key="MintInfoColorDisabled">hsla(207, 5%, 50%, 75%)</Color>
+			<!-- default warning colors -->
+			<Color x:Key="MintWarningColor">hsl(21, 56%, 50%)</Color>
+			<Color x:Key="MintWarningColorHover">hsl(21, 56%, 40%)</Color>
+			<Color x:Key="MintWarningColorPressed">hsl(21, 56%, 30%)</Color>
+			<Color x:Key="MintWarningColorDisabled">hsla(21, 5%, 50%, 75%)</Color>
+			<!-- default error colors -->
+			<Color x:Key="MintErrorColor">hsl(3, 45%, 50%)</Color>
+			<Color x:Key="MintErrorColorHover">hsl(3, 45%, 40%)</Color>
+			<Color x:Key="MintErrorColorPressed">hsl(3, 45%, 30%)</Color>
+			<Color x:Key="MintErrorColorDisabled">hsla(3, 5%, 50%, 75%)</Color>
+		</ResourceDictionary>
+	</ResourceDictionary.ThemeDictionaries>
+</ResourceDictionary>
+

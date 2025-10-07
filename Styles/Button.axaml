@@ -1,11 +1,211 @@
-﻿<Styles xmlns="https://github.com/avaloniaui"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-	<Design.PreviewWith>
-		<Border Padding="20">
-			<!-- Add Controls for Previewer Here -->
-		</Border>
-	</Design.PreviewWith>
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    x:ClassModifier="internal">
+  <Design.PreviewWith>
+	  <Border Padding="20" Background="{DynamicResource MintPrimaryBackgroundColor}">
+		  <Grid ColumnDefinitions="Auto,Auto" ColumnSpacing="16">
+			  <StackPanel Grid.Column="0" Orientation="Vertical" Spacing="8">
+				  <Button Content="Default" />
+				  <Button Content="Info" Classes="info" />
+				  <Button Content="Warning" Classes="warning" />
+				  <Button Content="Error" Classes="error" />
+				  <Button Content="Default" Classes="outline" />
+				  <Button Content="Info" Classes="info outline" />
+				  <Button Content="Warning" Classes="warning outline" />
+				  <Button Content="Error" Classes="error outline" />
+			  </StackPanel>
+			  <StackPanel Grid.Column="1" Orientation="Vertical" Spacing="8">
+				  <Button IsEnabled="False" Content="Default" />
+				  <Button IsEnabled="False" Content="Info" Classes="info" />
+				  <Button IsEnabled="False" Content="Warning" Classes="warning" />
+				  <Button IsEnabled="False" Content="Error" Classes="error" />
+				  <Button IsEnabled="False" Content="Default" Classes="outline" />
+				  <Button IsEnabled="False" Content="Info" Classes="info outline" />
+				  <Button IsEnabled="False" Content="Warning" Classes="warning outline" />
+				  <Button IsEnabled="False" Content="Error" Classes="error outline" />
+			  </StackPanel>
+		  </Grid>
+	  </Border>
+  </Design.PreviewWith>
 
-	<!-- Add Styles Here -->
-</Styles>
+  <ControlTheme x:Key="{x:Type Button}" TargetType="Button">
+    <Setter Property="Background" Value="{DynamicResource MintPrimaryColor}" />
+    <Setter Property="Foreground" Value="{DynamicResource MintForegroundColor}" />
+    <Setter Property="CornerRadius" Value="{DynamicResource ControlCornerRadius}" />
+    <Setter Property="Padding" Value="8 4" />
+    <Setter Property="HorizontalAlignment" Value="Left" />
+    <Setter Property="VerticalAlignment" Value="Center" />
+    <Setter Property="RenderTransform" Value="none" />
+    <Setter Property="Transitions">
+      <Transitions>
+        <TransformOperationsTransition Property="RenderTransform" Duration="0:0:.075" />
+      </Transitions>
+    </Setter>
 
+    <Setter Property="Template">
+      <ControlTemplate>
+        <ContentPresenter x:Name="PART_ContentPresenter"
+                          Background="{TemplateBinding Background}"
+                          CornerRadius="{TemplateBinding CornerRadius}"
+                          Content="{TemplateBinding Content}"
+                          ContentTemplate="{TemplateBinding ContentTemplate}"
+                          Padding="{TemplateBinding Padding}"
+                          RecognizesAccessKey="True"
+                          HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                          VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" />
+      </ControlTemplate>
+    </Setter>
+
+    <Style Selector="^:pressed">
+	    <Setter Property="RenderTransform" Value="scale(0.98)" />
+    </Style>
+
+    <Style Selector="^:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="Background" Value="{DynamicResource MintPrimaryColorHover}" />
+      <Setter Property="BorderBrush" Value="{DynamicResource MintPrimaryColorHover}" />
+    </Style>
+
+    <Style Selector="^:pressed  /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="Background" Value="{DynamicResource MintPrimaryColorPressed}" />
+    </Style>
+
+    <Style Selector="^:disabled /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="Background" Value="{DynamicResource MintPrimaryColorDisabled}" />
+    </Style>
+
+    <Style Selector="^.info">
+	    <Style Selector="^ /template/ ContentPresenter#PART_ContentPresenter">
+		    <Setter Property="Background" Value="{DynamicResource MintInfoColor}" />
+	    </Style>
+
+	    <Style Selector="^:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+		    <Setter Property="Background" Value="{DynamicResource MintInfoColorHover}" />
+	    </Style>
+
+	    <Style Selector="^:pressed  /template/ ContentPresenter#PART_ContentPresenter">
+		    <Setter Property="Background" Value="{DynamicResource MintInfoColorPressed}" />
+	    </Style>
+
+	    <Style Selector="^:disabled /template/ ContentPresenter#PART_ContentPresenter">
+		    <Setter Property="Background" Value="{DynamicResource MintInfoColorDisabled}" />
+	    </Style>
+    </Style>
+
+    <Style Selector="^.warning">
+	    <Style Selector="^ /template/ ContentPresenter#PART_ContentPresenter">
+		    <Setter Property="Background" Value="{DynamicResource MintWarningColor}" />
+	    </Style>
+
+	    <Style Selector="^:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+		    <Setter Property="Background" Value="{DynamicResource MintWarningColorHover}" />
+	    </Style>
+
+	    <Style Selector="^:pressed  /template/ ContentPresenter#PART_ContentPresenter">
+		    <Setter Property="Background" Value="{DynamicResource MintWarningColorPressed}" />
+	    </Style>
+
+	    <Style Selector="^:disabled /template/ ContentPresenter#PART_ContentPresenter">
+		    <Setter Property="Background" Value="{DynamicResource MintWarningColorDisabled}" />
+	    </Style>
+    </Style>
+
+    <Style Selector="^.error">
+	    <Style Selector="^ /template/ ContentPresenter#PART_ContentPresenter">
+		    <Setter Property="Background" Value="{DynamicResource MintErrorColor}" />
+	    </Style>
+
+	    <Style Selector="^:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+		    <Setter Property="Background" Value="{DynamicResource MintErrorColorHover}" />
+	    </Style>
+
+	    <Style Selector="^:pressed  /template/ ContentPresenter#PART_ContentPresenter">
+		    <Setter Property="Background" Value="{DynamicResource MintErrorColorPressed}" />
+	    </Style>
+
+	    <Style Selector="^:disabled /template/ ContentPresenter#PART_ContentPresenter">
+		    <Setter Property="Background" Value="{DynamicResource MintErrorColorDisabled}" />
+	    </Style>
+    </Style>
+
+    <Style Selector="^.outline">
+	    <Style Selector="^ /template/ ContentPresenter#PART_ContentPresenter">
+		    <Setter Property="Background" Value="Transparent" />
+		    <Setter Property="BorderThickness" Value="1" />
+		    <Setter Property="BorderBrush" Value="{DynamicResource MintPrimaryColor}" />
+	    </Style>
+
+	    <Style Selector="^:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+		    <Setter Property="BorderBrush" Value="{DynamicResource MintPrimaryColorHover}" />
+	    </Style>
+
+	    <Style Selector="^:pressed  /template/ ContentPresenter#PART_ContentPresenter">
+		    <Setter Property="BorderBrush" Value="{DynamicResource MintPrimaryColorPressed}" />
+	    </Style>
+
+	    <Style Selector="^:disabled /template/ ContentPresenter#PART_ContentPresenter">
+		    <Setter Property="BorderBrush" Value="{DynamicResource MintPrimaryColorDisabled}" />
+	    </Style>
+    </Style>
+
+    <Style Selector="^.info.outline">
+	    <Style Selector="^ /template/ ContentPresenter#PART_ContentPresenter">
+		    <Setter Property="Background" Value="Transparent" />
+		    <Setter Property="BorderThickness" Value="1" />
+		    <Setter Property="BorderBrush" Value="{DynamicResource MintInfoColor}" />
+	    </Style>
+
+	    <Style Selector="^:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+		    <Setter Property="BorderBrush" Value="{DynamicResource MintInfoColorHover}" />
+	    </Style>
+
+	    <Style Selector="^:pressed  /template/ ContentPresenter#PART_ContentPresenter">
+		    <Setter Property="BorderBrush" Value="{DynamicResource MintInfoColorPressed}" />
+	    </Style>
+
+	    <Style Selector="^:disabled /template/ ContentPresenter#PART_ContentPresenter">
+		    <Setter Property="BorderBrush" Value="{DynamicResource MintInfoColorDisabled}" />
+	    </Style>
+    </Style>
+
+    <Style Selector="^.warning.outline">
+	    <Style Selector="^ /template/ ContentPresenter#PART_ContentPresenter">
+		    <Setter Property="Background" Value="Transparent" />
+		    <Setter Property="BorderThickness" Value="1" />
+		    <Setter Property="BorderBrush" Value="{DynamicResource MintWarningColor}" />
+	    </Style>
+
+	    <Style Selector="^:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+		    <Setter Property="BorderBrush" Value="{DynamicResource MintWarningColorHover}" />
+	    </Style>
+
+	    <Style Selector="^:pressed  /template/ ContentPresenter#PART_ContentPresenter">
+		    <Setter Property="BorderBrush" Value="{DynamicResource MintWarningColorPressed}" />
+	    </Style>
+
+	    <Style Selector="^:disabled /template/ ContentPresenter#PART_ContentPresenter">
+		    <Setter Property="BorderBrush" Value="{DynamicResource MintWarningColorDisabled}" />
+	    </Style>
+    </Style>
+
+    <Style Selector="^.error.outline">
+	    <Style Selector="^ /template/ ContentPresenter#PART_ContentPresenter">
+		    <Setter Property="Background" Value="Transparent" />
+		    <Setter Property="BorderThickness" Value="1" />
+		    <Setter Property="BorderBrush" Value="{DynamicResource MintErrorColor}" />
+	    </Style>
+
+	    <Style Selector="^:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+		    <Setter Property="BorderBrush" Value="{DynamicResource MintErrorColorHover}" />
+	    </Style>
+
+	    <Style Selector="^:pressed  /template/ ContentPresenter#PART_ContentPresenter">
+		    <Setter Property="BorderBrush" Value="{DynamicResource MintErrorColorPressed}" />
+	    </Style>
+
+	    <Style Selector="^:disabled /template/ ContentPresenter#PART_ContentPresenter">
+		    <Setter Property="BorderBrush" Value="{DynamicResource MintErrorColorDisabled}" />
+	    </Style>
+    </Style>
+
+  </ControlTheme>
+</ResourceDictionary>
