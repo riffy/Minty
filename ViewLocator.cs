@@ -1,6 +1,6 @@
 namespace Minty;
 
-public class ViewLocator : IDataTemplate
+public sealed class ViewLocator : IDataTemplate
 {
 	private IServiceProvider? _serviceProvider;
 

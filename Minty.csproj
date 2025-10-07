@@ -48,6 +48,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Folder Include="Pages\Settings\Controllers\" />
+	  <Folder Include="Pages\Settings\Events\" />
+	  <Folder Include="Pages\Settings\Services\" />
 	  <Folder Include="Services\Logs\Events\" />
 	</ItemGroup>
 

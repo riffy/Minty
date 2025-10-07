@@ -1,4 +1,4 @@
-namespace Minty.Windows.Main.Models;
+namespace Minty.Screens.Main.Models;
 
 /// <summary>
 /// Represents a custom template selector for navigation items,

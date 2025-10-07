@@ -1,0 +1,49 @@
+<UserControl
+	xmlns="https://github.com/avaloniaui"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:fluent="clr-namespace:FluentAvalonia.UI.Controls;assembly=FluentAvalonia"
+	xmlns:vm="using:Minty.Screens.Splash.ViewModels"
+	mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+	x:Class="Minty.Screens.Splash.Views.SplashScreen"
+	x:DataType="vm:SplashScreenViewModel">
+	<Panel>
+		<StackPanel
+			Spacing="10"
+			VerticalAlignment="Center"
+			HorizontalAlignment="Center">
+			<!-- TODO: Background Image
+			<Image ..>
+			-->
+			<TextBlock
+				FontSize="25"
+				Text="Minty"
+				HorizontalAlignment="Center"/>
+			<ProgressBar
+				MaxWidth="300"
+				IsIndeterminate="True"
+				IsVisible="{Binding ShowInfiniteProgress}"/>
+			<ProgressBar
+				MaxWidth="300"
+				IsVisible="{Binding ShowValueProgress}"
+				Minimum="{Binding ValueProgressMin}"
+				Maximum="{Binding ValueProgressMax}"
+				Value="{Binding ValueProgress}"/>
+			<TextBlock
+				FontFamily="Urbanist"
+				FontSize="20"
+				HorizontalAlignment="Center"
+				IsVisible="True"
+				Text="{Binding LoadingText}" />
+			<fluent:InfoBar
+				Title="{Binding InfoBarTitle}"
+				Message="{Binding InfoBarText}"
+				Severity="{Binding InfoBarSeverity}"
+				IsOpen="{Binding ShowInfoBar}"
+				IsClosable="False"
+			/>
+		</StackPanel>
+	</Panel>
+</UserControl>
+

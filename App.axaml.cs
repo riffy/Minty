@@ -10,6 +10,8 @@ public class App : Application
 	public static IServiceProvider? ServiceProvider =>
 		((App)Current)?.Services;
 
+	public static Window? MainWindow { get; private set; }
+
 	public override void Initialize() =>
 		AvaloniaXamlLoader.Load(this);
 
@@ -25,7 +27,7 @@ public class App : Application
 			.AutoRegister()
 			.BuildServiceProvider();
 
-		desktop.MainWindow = new MainWindow
+		MainWindow = desktop.MainWindow = new MainWindow
 		{
 			DataContext = Services.GetRequiredService<MainWindowViewModel>()
 		};

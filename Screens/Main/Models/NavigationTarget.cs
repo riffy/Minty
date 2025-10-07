@@ -1,4 +1,4 @@
-namespace Minty.Windows.Main.Models;
+namespace Minty.Screens.Main.Models;
 
 /// <summary>
 /// A Navigation target constructed by the viewmodel and possible args
