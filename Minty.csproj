@@ -48,13 +48,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Pages\Settings\Controllers\" />
-	  <Folder Include="Pages\Settings\Events\" />
-	  <Folder Include="Pages\Settings\Services\" />
-	  <Folder Include="Services\Logs\Events\" />
-	</ItemGroup>
-
-	<ItemGroup>
 	  <Compile Update="Windows\Main\Views\MainWindow.axaml.cs">
 	    <DependentUpon>MainWindow.axaml</DependentUpon>
 	    <SubType>Code</SubType>

@@ -1,6 +1,6 @@
 namespace Minty.Screens.Main.Views;
 
-public partial class MainScreen : UserControl
+public sealed partial class MainScreen : UserControl
 {
 	public MainScreen()
 	{

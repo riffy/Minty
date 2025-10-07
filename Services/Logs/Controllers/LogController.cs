@@ -3,7 +3,7 @@ namespace Minty.Services.Logs.Controllers;
 [RegisterSingleton]
 public sealed class LogController
 {
-	public bool IsDebugEnabled;
+	public readonly bool IsDebugEnabled;
 
 	/// <summary>
 	/// The log filename of the current session
