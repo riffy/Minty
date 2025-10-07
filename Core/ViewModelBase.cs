@@ -1,4 +1,4 @@
-﻿namespace Minty.ViewModels;
+﻿namespace Minty.Core;
 
 public class ViewModelBase : ObservableObject
 {

@@ -10,10 +10,8 @@ public class App : Application
 	public static IServiceProvider? ServiceProvider =>
 		((App)Current)?.Services;
 
-	public override void Initialize()
-	{
+	public override void Initialize() =>
 		AvaloniaXamlLoader.Load(this);
-	}
 
 	public override void OnFrameworkInitializationCompleted()
 	{

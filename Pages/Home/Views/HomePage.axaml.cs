@@ -2,11 +2,11 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 
-namespace Minty.Pages.Main.Views;
+namespace Minty.Pages.Home.Views;
 
-public partial class MainPage : UserControl
+public partial class HomePage : UserControl
 {
-	public MainPage()
+	public HomePage()
 	{
 		InitializeComponent();
 	}

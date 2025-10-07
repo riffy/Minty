@@ -5,7 +5,7 @@ public class ViewLocator : IDataTemplate
 	private IServiceProvider? _serviceProvider;
 
 	/// <summary>
-	///     Build the control to display.
+	/// Build the control to display.
 	/// </summary>
 	public Control? Build(object? param)
 	{

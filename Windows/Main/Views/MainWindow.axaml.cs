@@ -54,6 +54,27 @@ public sealed partial class MainWindow : AppWindow, IDisposable
 		_updateTimer.Dispose();
 	}
 
+	private async void NavigationPanel_OnSelectionChanged(object? sender, NavigationViewSelectionChangedEventArgs e)
+	{
+		if (DataContext is not MainWindowViewModel viewModel) return;
+
+		switch (e.SelectedItem)
+		{
+			case NavigationViewItem { Tag: NavigationCategory cat }:
+				// viewModel.NavigateTo(cat);
+				Console.WriteLine($"NavigationViewItem: {cat.Name}");
+				break;
+			case NavigationCategory category:
+				// viewModel.NavigateTo(category);
+				Console.WriteLine($"Category: {category.Name}");
+				break;
+			case NavigationViewItem {Tag: "Settings" or "Einstellungen"}:
+				Console.WriteLine("Settings");
+				// NavigateToSettings();
+				break;
+		}
+	}
+
 	public void Dispose() =>
 		_updateTimer.Dispose();
 }
