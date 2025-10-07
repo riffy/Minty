@@ -14,4 +14,13 @@
     <Application.Styles>
 	    <style:FluentAvaloniaTheme PreferSystemTheme="True" PreferUserAccentColor="True" />
     </Application.Styles>
+
+    <Application.Resources>
+	    <ResourceDictionary>
+		    <ResourceDictionary.MergedDictionaries>
+			    <MergeResourceInclude Source="/Styles/Button.axaml" />
+			    <MergeResourceInclude Source="/Styles/BaseColorPalette.axaml" />
+		    </ResourceDictionary.MergedDictionaries>
+	    </ResourceDictionary>
+    </Application.Resources>
 </Application>
