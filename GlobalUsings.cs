@@ -5,6 +5,7 @@ global using System.Diagnostics;
 global using System.Linq;
 global using System.Runtime.CompilerServices;
 global using System.Runtime.InteropServices;
+global using System.Text;
 global using System.Text.Json;
 global using System.Text.Json.Serialization;
 
@@ -29,8 +30,10 @@ global using Microsoft.Extensions.DependencyInjection;
 
 global using Minty.Core.Models;
 global using Minty.Helpers;
+global using Minty.Localization;
 global using Minty.Pages.Home.ViewModels;
 global using Minty.Pages.Settings.ViewModels;
+global using Minty.Windows.Main.Controllers;
 global using Minty.Screens.Main.Models;
 global using Minty.Screens.Main.ViewModels;
 global using Minty.Screens.Splash.ViewModels;

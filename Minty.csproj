@@ -48,9 +48,21 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="Windows\Main\Views\MainWindow.axaml.cs">
-	    <DependentUpon>MainWindow.axaml</DependentUpon>
-	    <SubType>Code</SubType>
-	  </Compile>
+		<Compile Update="Windows\Main\Views\MainWindow.axaml.cs">
+			<DependentUpon>MainWindow.axaml</DependentUpon>
+			<SubType>Code</SubType>
+		</Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+		<EmbeddedResource Update="Localization\Resources.resx">
+			<Generator>PublicResXFileCodeGenerator</Generator>
+			<LastGenOutput>Resources.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<Compile Update="Localization\Resources.Designer.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>Resources.resx</DependentUpon>
+		</Compile>
 	</ItemGroup>
 </Project>

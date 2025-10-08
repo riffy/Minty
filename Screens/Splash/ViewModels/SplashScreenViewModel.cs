@@ -7,18 +7,20 @@ public sealed partial class SplashScreenViewModel : ViewModelBase
 	private readonly LogController _logController;
 	private readonly AppConfigController _appConfigController;
 	private readonly IServiceProvider _serviceProvider;
+	private readonly MainWindowController _mainWindowController;
 
-	public SplashScreenViewModel(IServiceProvider sp, AppDataService ads,
-		AppConfigController acc, LogController lc)
+	public SplashScreenViewModel(IServiceProvider sp, LogController lc,
+		AppDataService ads, AppConfigController acc, MainWindowController mwc)
 	{
 		_serviceProvider = sp;
 		_appDataService = ads;
 		_logController = lc;
 		_appConfigController = acc;
+		_mainWindowController = mwc;
 		_loadQueue.Enqueue(InitializeApp);
 		_loadQueue.Enqueue(InitializeLog);
 		_loadQueue.Enqueue(InitializeConfig);
-		_loadQueue.Enqueue(FinalizeApp);
+		_loadQueue.Enqueue(WaitForMainWindow);
 		TriggerNextLoadStep();
 	}
 
@@ -139,25 +141,17 @@ public sealed partial class SplashScreenViewModel : ViewModelBase
 	}
 
 	/// <summary>
-	/// Finalizes the app, in case the data is loaded faster
-	/// than the UI, queues itself to delay any further UI action.
+	/// Waits for the application's main window to be initialized and fully loaded.
 	/// </summary>
-	/// <returns></returns>
-	private async Task<bool> FinalizeApp()
+	/// <returns>
+	/// A task that resolves to true once the main window is initialized and loaded.
+	/// </returns>
+	private async Task<bool> WaitForMainWindow()
 	{
-		if (App.MainWindow is null)
-		{
-			_logController.Debug("MainWindow not available yet... Retrying...");
-			_loadQueue.Enqueue(FinalizeApp);
+		// Wait until App.MainWindow is not null && App.MainWindow.IsLoaded
+		while (App.MainWindow is null || !App.MainWindow.IsLoaded)
 			await Task.Delay(500);
-		}
-		else if (!App.MainWindow.IsLoaded)
-		{
-			_logController.Debug("MainWindow available, but not loaded yet... Retrying...");
-			_loadQueue.Enqueue(FinalizeApp);
-			await Task.Delay(500);
-		}
-		return true;
+		return await _mainWindowController.Initialize();
 	}
 	#endregion
 

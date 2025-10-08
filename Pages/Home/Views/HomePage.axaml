@@ -4,9 +4,15 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:vm="using:Minty.Pages.Home.ViewModels"
+	xmlns:lang="using:Minty.Localization"
 	mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
 	x:Class="Minty.Pages.Home.Views.HomePage"
 	x:DataType="vm:HomePageViewModel">
-	Welcome to Avalonia!
+	<StackPanel>
+		<TextBlock Text="{x:Static lang:Resources.GreetingText}" />
+		<TextBlock Text="{x:Static lang:Resources.AnotherText}" />
+		<Button Content="+" Command="{Binding IncrementButtonCountCommand}" />
+		<TextBlock Text="{Binding ButtonPressCountText}" />
+	</StackPanel>
 </UserControl>
 

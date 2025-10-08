@@ -5,6 +5,7 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:fluent="clr-namespace:FluentAvalonia.UI.Controls;assembly=FluentAvalonia"
 	xmlns:vm="using:Minty.Screens.Splash.ViewModels"
+	xmlns:lang="using:Minty.Localization"
 	mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
 	x:Class="Minty.Screens.Splash.Views.SplashScreen"
 	x:DataType="vm:SplashScreenViewModel">
@@ -18,7 +19,7 @@
 			-->
 			<TextBlock
 				FontSize="25"
-				Text="Minty"
+				Text="{x:Static lang:Resources.App_Title}"
 				HorizontalAlignment="Center"/>
 			<ProgressBar
 				MaxWidth="300"
