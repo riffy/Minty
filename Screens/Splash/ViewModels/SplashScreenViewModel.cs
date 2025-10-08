@@ -43,10 +43,7 @@ public sealed partial class SplashScreenViewModel : ViewModelBase
 			}
 			catch (Exception ex)
 			{
-				DisplayInfoBar(
-					Resources.Error,
-					$"Error while trying to ensure AppData-Directory:\n{ex.Message}",
-					InfoBarSeverity.Error);
+				DisplayError(Resources.Module_App, ex.Message);
 			}
 		else
 			_serviceProvider
@@ -65,17 +62,14 @@ public sealed partial class SplashScreenViewModel : ViewModelBase
 	{
 		try
 		{
-			FormatLoadingText("App Data");
+			FormatLoadingText(Resources.Module_App_Data);
 			return _appDataService.EnsureAppDataDirectory() ?
 				true :
 				throw new("AppData-Directory could not be ensured");
 		}
 		catch (Exception ex)
 		{
-			DisplayInfoBar(
-				Resources.Error,
-				$"Error while initializing App:\n{ex.Message}",
-				InfoBarSeverity.Error);
+			DisplayError(Resources.Module_App_Data, ex.Message);
 			return false;
 		}
 	}
@@ -87,7 +81,7 @@ public sealed partial class SplashScreenViewModel : ViewModelBase
 	{
 		try
 		{
-			FormatLoadingText("Logger");
+			FormatLoadingText(Resources.Module_Logger);
 			if (!await _logController.EnsureLogFile())
 				throw new("Log-File could not be ensured");
 			_logController.Info("Logger initialized");
@@ -95,10 +89,7 @@ public sealed partial class SplashScreenViewModel : ViewModelBase
 		}
 		catch (Exception ex)
 		{
-			DisplayInfoBar(
-				Resources.Error,
-				$"Error while initializing Log-File:\n{ex.Message}",
-				InfoBarSeverity.Error);
+			DisplayError(Resources.Module_Logger, ex.Message);
 			return false;
 		}
 	}
@@ -110,7 +101,7 @@ public sealed partial class SplashScreenViewModel : ViewModelBase
 	{
 		try
 		{
-			FormatLoadingText("Configuration");
+			FormatLoadingText(Resources.Module_Configuration);
 			return await _appConfigController.InitializeConfig() ?
 				true :
 				throw new("Config could not be initialized");
@@ -118,10 +109,7 @@ public sealed partial class SplashScreenViewModel : ViewModelBase
 		catch (Exception ex)
 		{
 			_logController.Exception(ex);
-			DisplayInfoBar(
-				Resources.Error,
-				$"Error while initializing Database:\n{ex.Message}",
-				InfoBarSeverity.Error);
+			DisplayError(Resources.Module_Configuration, ex.Message);
 			return false;
 		}
 	}
@@ -166,6 +154,17 @@ public sealed partial class SplashScreenViewModel : ViewModelBase
 	private string _infoBarText = "";
 	[ObservableProperty]
 	private InfoBarSeverity _infoBarSeverity = InfoBarSeverity.Informational;
+
+	/// <summary>
+	/// Displays an error message in the info bar with the specified module name and text.
+	/// </summary>
+	/// <param name="module">The name of the module where the error occurred.</param>
+	/// <param name="text">The details of the error message to display.</param>
+	private void DisplayError(string module, string text) =>
+		DisplayInfoBar(
+			Resources.Error,
+			$"Error while initializing {module}:\n{text}",
+			InfoBarSeverity.Error);
 
 	/// <summary>
 	/// Shows the info bar with the given data.

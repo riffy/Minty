@@ -57,15 +57,33 @@ namespace Minty.Localization {
             }
         }
         
-        public static string Generic_Error {
-            get {
-                return ResourceManager.GetString("Generic_Error", resourceCulture);
-            }
-        }
-        
         public static string Error {
             get {
                 return ResourceManager.GetString("Error", resourceCulture);
+            }
+        }
+        
+        public static string Module_App {
+            get {
+                return ResourceManager.GetString("Module_App", resourceCulture);
+            }
+        }
+        
+        public static string Module_App_Data {
+            get {
+                return ResourceManager.GetString("Module_App_Data", resourceCulture);
+            }
+        }
+        
+        public static string Module_Logger {
+            get {
+                return ResourceManager.GetString("Module_Logger", resourceCulture);
+            }
+        }
+        
+        public static string Module_Configuration {
+            get {
+                return ResourceManager.GetString("Module_Configuration", resourceCulture);
             }
         }
     }

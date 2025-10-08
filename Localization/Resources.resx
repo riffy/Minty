@@ -24,10 +24,19 @@
 	<data name="Splash_Initializing" xml:space="preserve">
 		<value>Initializing {0} ...</value>
 	</data>
-	<data name="Generic_Error" xml:space="preserve">
-		<value>Error</value>
-	</data>
 	<data name="Error" xml:space="preserve">
 		<value>Error</value>
+	</data>
+	<data name="Module_App" xml:space="preserve">
+		<value>App</value>
+	</data>
+	<data name="Module_App_Data" xml:space="preserve">
+		<value>App Data</value>
+	</data>
+	<data name="Module_Logger" xml:space="preserve">
+		<value>Logger</value>
+	</data>
+	<data name="Module_Configuration" xml:space="preserve">
+		<value>Configuration</value>
 	</data>
 </root>
