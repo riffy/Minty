@@ -18,16 +18,16 @@
 	<resheader name="writer">
 		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
 	</resheader>
-	<data name="GreetingText" xml:space="preserve">
-		<value>Welcome to Avalonia! 123</value>
-	</data>
-	<data name="AnotherText" xml:space="preserve">
-		<value>English Text</value>
-	</data>
 	<data name="App_Title" xml:space="preserve">
 		<value>Minty</value>
 	</data>
-	<data name="ButtonPressCount" xml:space="preserve">
-		<value>You have pressed the button {0} times.</value>
+	<data name="Splash_Initializing" xml:space="preserve">
+		<value>Initializing {0} ...</value>
+	</data>
+	<data name="Generic_Error" xml:space="preserve">
+		<value>Error</value>
+	</data>
+	<data name="Error" xml:space="preserve">
+		<value>Error</value>
 	</data>
 </root>

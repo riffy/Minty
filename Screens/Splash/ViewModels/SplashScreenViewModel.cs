@@ -36,7 +36,6 @@ public sealed partial class SplashScreenViewModel : ViewModelBase
 		if (_loadQueue.Count > 0)
 			try
 			{
-				LoadingText = "";
 				if (await _loadQueue.Dequeue().Invoke())
 					TriggerNextLoadStep();
 				else
@@ -45,7 +44,7 @@ public sealed partial class SplashScreenViewModel : ViewModelBase
 			catch (Exception ex)
 			{
 				DisplayInfoBar(
-					"Critical Error",
+					Resources.Error,
 					$"Error while trying to ensure AppData-Directory:\n{ex.Message}",
 					InfoBarSeverity.Error);
 			}
@@ -66,20 +65,16 @@ public sealed partial class SplashScreenViewModel : ViewModelBase
 	{
 		try
 		{
-			LoadingText = "Initializing AppData-Directory ...";
-			if (_appDataService.EnsureAppDataDirectory()) return true;
-			DisplayInfoBar(
-				"Error",
-				"Error while trying to ensure AppData-Directory",
-				InfoBarSeverity.Error);
-			return false;
-
+			FormatLoadingText("App Data");
+			return _appDataService.EnsureAppDataDirectory() ?
+				true :
+				throw new("AppData-Directory could not be ensured");
 		}
 		catch (Exception ex)
 		{
 			DisplayInfoBar(
-				"Critical Error",
-				$"Critical Error while initializing App:\n{ex.Message}",
+				Resources.Error,
+				$"Error while initializing App:\n{ex.Message}",
 				InfoBarSeverity.Error);
 			return false;
 		}
@@ -92,23 +87,17 @@ public sealed partial class SplashScreenViewModel : ViewModelBase
 	{
 		try
 		{
-			LoadingText = "Initializing Logger ...";
+			FormatLoadingText("Logger");
 			if (!await _logController.EnsureLogFile())
-			{
-				DisplayInfoBar(
-					"Error",
-					"Error while trying to ensure Log-File.",
-					InfoBarSeverity.Error);
-				return false;
-			}
-			_logController.Info("Log initialized");
+				throw new("Log-File could not be ensured");
+			_logController.Info("Logger initialized");
 			return true;
 		}
 		catch (Exception ex)
 		{
 			DisplayInfoBar(
-				"Critical Error",
-				$"Cirtial Error while initializing Log-File:\n{ex.Message}",
+				Resources.Error,
+				$"Error while initializing Log-File:\n{ex.Message}",
 				InfoBarSeverity.Error);
 			return false;
 		}
@@ -121,20 +110,17 @@ public sealed partial class SplashScreenViewModel : ViewModelBase
 	{
 		try
 		{
-			LoadingText = "Loading Configuration ...";
-			if (await _appConfigController.InitializeConfig()) return true;
-			DisplayInfoBar(
-				"Error",
-				"Error while trying to initialize Configuration.",
-				InfoBarSeverity.Error);
-			return false;
+			FormatLoadingText("Configuration");
+			return await _appConfigController.InitializeConfig() ?
+				true :
+				throw new("Config could not be initialized");
 		}
 		catch (Exception ex)
 		{
 			_logController.Exception(ex);
 			DisplayInfoBar(
-				"Critical Error",
-				$"Cirtial Error while initializing Database:\n{ex.Message}",
+				Resources.Error,
+				$"Error while initializing Database:\n{ex.Message}",
 				InfoBarSeverity.Error);
 			return false;
 		}
@@ -158,15 +144,26 @@ public sealed partial class SplashScreenViewModel : ViewModelBase
 	#region LOADING TEXT
 	[ObservableProperty]
 	private string _loadingText = "";
+
+	private static readonly CompositeFormat _loadingTextComposite =
+		CompositeFormat.Parse(Resources.Splash_Initializing);
+
+	/// <summary>
+	/// Updates the loading text displayed on the splash screen with the name of the module being initialized.
+	/// </summary>
+	/// <param name="module">The name of the module currently being initialized.</param>
+	private void FormatLoadingText(string module) =>
+		LoadingText = string.Format(null, _loadingTextComposite, module);
+
 	#endregion
 
 	#region INFO BAR
 	[ObservableProperty]
 	private bool _showInfoBar;
 	[ObservableProperty]
-	private string _infoBarTitle = "Yo";
+	private string _infoBarTitle = "";
 	[ObservableProperty]
-	private string _infoBarText = "Message";
+	private string _infoBarText = "";
 	[ObservableProperty]
 	private InfoBarSeverity _infoBarSeverity = InfoBarSeverity.Informational;
 

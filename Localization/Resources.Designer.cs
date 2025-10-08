@@ -45,27 +45,27 @@ namespace Minty.Localization {
             }
         }
         
-        public static string GreetingText {
-            get {
-                return ResourceManager.GetString("GreetingText", resourceCulture);
-            }
-        }
-        
-        public static string AnotherText {
-            get {
-                return ResourceManager.GetString("AnotherText", resourceCulture);
-            }
-        }
-        
         public static string App_Title {
             get {
                 return ResourceManager.GetString("App_Title", resourceCulture);
             }
         }
         
-        public static string ButtonPressCount {
+        public static string Splash_Initializing {
             get {
-                return ResourceManager.GetString("ButtonPressCount", resourceCulture);
+                return ResourceManager.GetString("Splash_Initializing", resourceCulture);
+            }
+        }
+        
+        public static string Generic_Error {
+            get {
+                return ResourceManager.GetString("Generic_Error", resourceCulture);
+            }
+        }
+        
+        public static string Error {
+            get {
+                return ResourceManager.GetString("Error", resourceCulture);
             }
         }
     }

@@ -9,10 +9,7 @@
 	x:Class="Minty.Pages.Home.Views.HomePage"
 	x:DataType="vm:HomePageViewModel">
 	<StackPanel>
-		<TextBlock Text="{x:Static lang:Resources.GreetingText}" />
-		<TextBlock Text="{x:Static lang:Resources.AnotherText}" />
-		<Button Content="+" Command="{Binding IncrementButtonCountCommand}" />
-		<TextBlock Text="{Binding ButtonPressCountText}" />
+		<TextBlock Text="{x:Static lang:Resources.App_Title}" />
 	</StackPanel>
 </UserControl>
 

@@ -32,7 +32,6 @@
 				Maximum="{Binding ValueProgressMax}"
 				Value="{Binding ValueProgress}"/>
 			<TextBlock
-				FontFamily="Urbanist"
 				FontSize="20"
 				HorizontalAlignment="Center"
 				IsVisible="True"
