@@ -134,5 +134,11 @@ namespace Minty.Localization {
                 return ResourceManager.GetString("Module_Repository", resourceCulture);
             }
         }
+        
+        public static string Nav_Categories {
+            get {
+                return ResourceManager.GetString("Nav_Categories", resourceCulture);
+            }
+        }
     }
 }

@@ -133,11 +133,8 @@ public sealed partial class SettingsPageViewModel : ViewModelBase
 	/// </summary>
 	/// <returns>Returns a task that represents the asynchronous operation.</returns>
 	[RelayCommand]
-	private async Task ClearRepositoryPath()
-	{
-		_appConfigController.Config.RepositoryPath = null;
-		await _appConfigController.SaveConfigToFile();
-	}
+	private async Task ClearRepositoryPath() =>
+		await _repositoryController.ClearRepository();
 
 	#endregion
 

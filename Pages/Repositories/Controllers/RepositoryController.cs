@@ -16,13 +16,9 @@ public sealed class RepositoryController(LogController logController, AppConfigC
 		{
 			if (string.IsNullOrEmpty(appConfigController.Config.RepositoryPath))
 			{
-				// repositoryPageViewModel.RepositoryPath = string.Empty;
 				NavigationItem.IsEnabled = false;
 				return true;
 			}
-
-			// Set the paths & load the repository
-			// repositoryPageViewModel.RepositoryPath = appConfigController.Config.RepositoryPath;
 			NavigationItem.IsEnabled = true;
 			Repository = await repositoryService.LoadRepository(appConfigController.Config.RepositoryPath);
 			return true;
@@ -77,6 +73,21 @@ public sealed class RepositoryController(LogController logController, AppConfigC
 		// TODO: Show content dialog with loading of repository
 		// TODO: Show possible error dialog on exception
 		Repository = await repositoryService.LoadRepository(path);
+		NavigationItem.IsEnabled = true;
+		repositoryEvents.NewRepositoryApplied(Repository);
+	}
+
+	/// <summary>
+	/// Clears the current repository by resetting the repository path in the application configuration,
+	/// saving the updated configuration to a file, and notifying relevant listeners about the change.
+	/// </summary>
+	/// <returns>Returns a task that represents the asynchronous operation.</returns>
+	public async Task ClearRepository()
+	{
+		appConfigController.Config.RepositoryPath = string.Empty;
+		await appConfigController.SaveConfigToFile();
+		Repository = null;
+		NavigationItem.IsEnabled = false;
 		repositoryEvents.NewRepositoryApplied(Repository);
 	}
 

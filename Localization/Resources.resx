@@ -63,4 +63,7 @@
 	<data name="Module_Repository" xml:space="preserve">
 		<value>Repository</value>
 	</data>
+	<data name="Nav_Categories" xml:space="preserve">
+		<value>Categories ({0})</value>
+	</data>
 </root>

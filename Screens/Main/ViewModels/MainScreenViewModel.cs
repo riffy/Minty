@@ -9,7 +9,7 @@ public sealed partial class MainScreenViewModel : ViewModelBase
 	private readonly HomePageViewModel _homePageViewModel;
 
 	public MainScreenViewModel(IServiceProvider sP, LogController lC, RepositoryController rc,
-		HomePageViewModel hpvm)
+		HomePageViewModel hpvm, RepositoryEvents re)
 	{
 		_logController = lC;
 		_serviceProvider = sP;
@@ -17,6 +17,7 @@ public sealed partial class MainScreenViewModel : ViewModelBase
 		_homePageViewModel = hpvm;
 		CurrentPage = hpvm;
 		LoadNavigationItems();
+		re.OnNewRepository += async (_) => LoadNavigationItems();
 	}
 
 	#region NAVIGATION
@@ -25,6 +26,9 @@ public sealed partial class MainScreenViewModel : ViewModelBase
 
 	[ObservableProperty]
 	private ObservableCollection<NavigationBase> _navigationCategories = [];
+
+	private static readonly CompositeFormat _categoryHeaderComposite =
+		CompositeFormat.Parse(Resources.Nav_Categories);
 
 	/// <summary>
 	/// Initializes and populates the collection of navigation items and categories
@@ -50,11 +54,16 @@ public sealed partial class MainScreenViewModel : ViewModelBase
 
 		// Seperator + List of categories
 		NavigationCategories.Add(new NavigationSeperator());
-		NavigationCategories.Add(new NavigationHeader
-		{
-			Name = Resources.Setting_Repository_Not_Selected
-		});
-
+		if (_repositoryController.Repository is null)
+			NavigationCategories.Add(new NavigationHeader
+			{
+				Name = Resources.Setting_Repository_Not_Selected
+			});
+		else
+			NavigationCategories.Add(new NavigationHeader
+			{
+				Name = string.Format(null, _categoryHeaderComposite, _repositoryController.Repository.Categories.Count)
+			});
 	}
 
 	/// <summary>
