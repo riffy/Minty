@@ -1,3 +1,3 @@
 namespace Minty.Screens.Main.Models;
 
-public class NavigationSeperator : NavigationCategoryBase { }
+public class NavigationSeperator : NavigationBase;

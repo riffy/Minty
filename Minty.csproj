@@ -52,6 +52,10 @@
 			<DependentUpon>MainWindow.axaml</DependentUpon>
 			<SubType>Code</SubType>
 		</Compile>
+		<Compile Update="Pages\Repositories\Views\RepositoryPage.axaml.cs">
+		  <DependentUpon>RepositoryPage.axaml</DependentUpon>
+		  <SubType>Code</SubType>
+		</Compile>
 	</ItemGroup>
 
 	<ItemGroup>

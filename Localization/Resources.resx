@@ -39,4 +39,28 @@
 	<data name="Module_Configuration" xml:space="preserve">
 		<value>Configuration</value>
 	</data>
+	<data name="Setting_App_Theme_Title" xml:space="preserve">
+		<value>App Theme</value>
+	</data>
+	<data name="Setting_App_Theme_Description" xml:space="preserve">
+		<value>Change the app theme</value>
+	</data>
+	<data name="Setting_App_DataFolder_Title" xml:space="preserve">
+		<value>App Data Folder</value>
+	</data>
+	<data name="Setting_App_DataFolder_Description" xml:space="preserve">
+		<value>Location for configuration and other files</value>
+	</data>
+	<data name="Open" xml:space="preserve">
+		<value>Open</value>
+	</data>
+	<data name="Setting_Repository_Title" xml:space="preserve">
+		<value>Repository Path</value>
+	</data>
+	<data name="Setting_Repository_Not_Selected" xml:space="preserve">
+		<value>No repository selected ...</value>
+	</data>
+	<data name="Module_Repository" xml:space="preserve">
+		<value>Repository</value>
+	</data>
 </root>

@@ -30,6 +30,7 @@ public sealed class MainWindowController : IDisposable
 				return true;
 			if (App.MainWindow is not { IsLoaded: true })
 				return false;
+			App.MainWindow.RequestedThemeVariant = ThemeHelper.GetThemeVariant(_appConfigController.Config.Theme);
 			App.MainWindow.Position = new(_appConfigController.Config.WindowPosition.X, _appConfigController.Config.WindowPosition.Y);
 			App.MainWindow.Width = _appConfigController.Config.WindowSize.X;
 			App.MainWindow.Height = _appConfigController.Config.WindowSize.Y;

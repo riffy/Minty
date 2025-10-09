@@ -86,5 +86,53 @@ namespace Minty.Localization {
                 return ResourceManager.GetString("Module_Configuration", resourceCulture);
             }
         }
+        
+        public static string Setting_App_Theme_Title {
+            get {
+                return ResourceManager.GetString("Setting_App_Theme_Title", resourceCulture);
+            }
+        }
+        
+        public static string Setting_App_Theme_Description {
+            get {
+                return ResourceManager.GetString("Setting_App_Theme_Description", resourceCulture);
+            }
+        }
+        
+        public static string Setting_App_DataFolder_Title {
+            get {
+                return ResourceManager.GetString("Setting_App_DataFolder_Title", resourceCulture);
+            }
+        }
+        
+        public static string Setting_App_DataFolder_Description {
+            get {
+                return ResourceManager.GetString("Setting_App_DataFolder_Description", resourceCulture);
+            }
+        }
+        
+        public static string Open {
+            get {
+                return ResourceManager.GetString("Open", resourceCulture);
+            }
+        }
+        
+        public static string Setting_Repository_Title {
+            get {
+                return ResourceManager.GetString("Setting_Repository_Title", resourceCulture);
+            }
+        }
+        
+        public static string Setting_Repository_Not_Selected {
+            get {
+                return ResourceManager.GetString("Setting_Repository_Not_Selected", resourceCulture);
+            }
+        }
+        
+        public static string Module_Repository {
+            get {
+                return ResourceManager.GetString("Module_Repository", resourceCulture);
+            }
+        }
     }
 }

@@ -50,6 +50,26 @@ public class AppConfig : INotifyPropertyChanged
 
 	#endregion
 
+	#region REPOSITORY
+
+	private string? _repositoryPath;
+
+	/// <summary>
+	/// The file path to the repository associated with the application.
+	/// </summary>
+	public string? RepositoryPath
+	{
+		get => _repositoryPath;
+		set
+		{
+			if (value == _repositoryPath) return;
+			_repositoryPath = value;
+			OnPropertyChanged();
+		}
+	}
+
+	#endregion
+
 	/// <summary>
 	/// Initializes the current app configuration with the values from the provided configuration object.
 	/// </summary>
@@ -59,7 +79,7 @@ public class AppConfig : INotifyPropertyChanged
 		_theme = config.Theme;
 		_windowPosition = config.WindowPosition;
 		_windowSize = config.WindowSize;
-		OnPropertyChanged();
+		_repositoryPath = config.RepositoryPath;
 	}
 
 	public event PropertyChangedEventHandler? PropertyChanged;

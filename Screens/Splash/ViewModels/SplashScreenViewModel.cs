@@ -6,20 +6,23 @@ public sealed partial class SplashScreenViewModel : ViewModelBase
 	private readonly AppDataService _appDataService;
 	private readonly LogController _logController;
 	private readonly AppConfigController _appConfigController;
+	private readonly RepositoryController _repositoryController;
 	private readonly IServiceProvider _serviceProvider;
 	private readonly MainWindowController _mainWindowController;
 
 	public SplashScreenViewModel(IServiceProvider sp, LogController lc,
-		AppDataService ads, AppConfigController acc, MainWindowController mwc)
+		AppDataService ads, AppConfigController acc, MainWindowController mwc, RepositoryController rc)
 	{
 		_serviceProvider = sp;
 		_appDataService = ads;
 		_logController = lc;
 		_appConfigController = acc;
 		_mainWindowController = mwc;
+		_repositoryController = rc;
 		_loadQueue.Enqueue(InitializeApp);
 		_loadQueue.Enqueue(InitializeLog);
 		_loadQueue.Enqueue(InitializeConfig);
+		_loadQueue.Enqueue(InitializeRepository);
 		_loadQueue.Enqueue(WaitForMainWindow);
 		TriggerNextLoadStep();
 	}
@@ -110,6 +113,29 @@ public sealed partial class SplashScreenViewModel : ViewModelBase
 		{
 			_logController.Exception(ex);
 			DisplayError(Resources.Module_Configuration, ex.Message);
+			return false;
+		}
+	}
+
+	/// <summary>
+	/// Initializes the repository module during the application startup process.
+	/// If the initialization fails, logs the exception and displays an error message on the splash screen.
+	/// </summary>
+	/// <returns>True if the repository is successfully initialized; otherwise, false.</returns>
+	/// <exception cref="Exception">Thrown when the repository initialization fails.</exception>
+	private async Task<bool> InitializeRepository()
+	{
+		try
+		{
+			FormatLoadingText(Resources.Module_Repository);
+			return await _repositoryController.Initialize() ?
+				true :
+				throw new("Repository could not be initialized");
+		}
+		catch (Exception ex)
+		{
+			_logController.Exception(ex);
+			DisplayError(Resources.Module_Repository, ex.Message);
 			return false;
 		}
 	}
