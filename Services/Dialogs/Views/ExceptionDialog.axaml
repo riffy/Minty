@@ -2,6 +2,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:Minty.Services.Dialogs.ViewModels"
+             x:DataType="vm:ExceptionDialogViewModel"
              xmlns:ui="using:FluentAvalonia.UI.Controls"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Minty.Services.Dialogs.Views.ExceptionDialog">
@@ -13,7 +15,7 @@
 			Severity="Error"
 			IsOpen="True"
 			IsClosable="False"
-			Message="EXCEPTION_PLATZHALTER"
+			Message="{Binding Message}"
 		/>
 		<Expander
 			Header="Exception Details"
@@ -23,7 +25,7 @@
 				MaxHeight="300"
 			>
 				<SelectableTextBlock
-					Text="EXCEPTION_MESSAGE"
+					Text="{Binding ExceptionDetails}"
 					FontSize="12"
 					TextWrapping="Wrap"
 					Padding="8"

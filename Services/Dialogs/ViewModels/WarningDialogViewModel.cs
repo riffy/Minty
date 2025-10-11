@@ -5,5 +5,8 @@ using Base;
 [RegisterTransient]
 public sealed class WarningDialogViewModel : BaseDialogViewModel
 {
-	
+	public WarningDialogViewModel()
+	{
+		Message = "Warning";
+	}
 }
