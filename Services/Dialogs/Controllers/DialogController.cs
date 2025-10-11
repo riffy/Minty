@@ -1,12 +1,11 @@
 ﻿namespace Minty.Services.Dialogs.Controllers;
 
-using Interfaces;
 using ViewModels;
 using Views;
 using App = Minty.App;
 
-[RegisterTransient]
-public sealed class DialogController : IDialogController
+[RegisterSingleton]
+public sealed class DialogController
 {
 	private readonly LogController _logController;
 
