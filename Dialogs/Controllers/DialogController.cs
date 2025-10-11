@@ -1,7 +1,7 @@
-﻿namespace Minty.Services.Dialogs.Controllers;
+﻿namespace Minty.Dialogs.Controllers;
 
-using ViewModels;
-using Views;
+using Minty.Dialogs.ViewModels;
+using Minty.Dialogs.Views;
 using App = Minty.App;
 
 [RegisterSingleton]

@@ -1,6 +1,6 @@
 namespace Minty.Pages.Home.ViewModels;
 
-using Services.Dialogs.Controllers;
+using Dialogs.Controllers;
 
 [RegisterSingleton]
 public sealed partial class HomePageViewModel : ViewModelBase

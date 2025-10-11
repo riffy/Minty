@@ -1,4 +1,4 @@
-﻿namespace Minty.Services.Dialogs.Base;
+﻿namespace Minty.Dialogs.Base;
 
 public class BaseDialogViewModel : ViewModelBase
 {

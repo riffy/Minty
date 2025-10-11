@@ -2,13 +2,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:vm="using:Minty.Services.Dialogs.ViewModels"
-             x:DataType="vm:ErrorDialogViewModel"
+             x:DataType="viewModels:InfoDialogViewModel"
              xmlns:ui="using:FluentAvalonia.UI.Controls"
+             xmlns:viewModels="clr-namespace:Minty.Dialogs.ViewModels"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="Minty.Services.Dialogs.Views.ErrorDialog">
+             x:Class="Minty.Dialogs.Views.InfoDialog">
 	<ui:InfoBar
-		Severity="Error"
+		Severity="Informational"
 		IsOpen="True"
 		IsClosable="False"
 		Message="{Binding Message}"

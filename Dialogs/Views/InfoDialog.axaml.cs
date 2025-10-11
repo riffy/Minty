@@ -1,4 +1,4 @@
-﻿namespace Minty.Services.Dialogs.Views;
+﻿namespace Minty.Dialogs.Views;
 
 public partial class InfoDialog : UserControl
 {
