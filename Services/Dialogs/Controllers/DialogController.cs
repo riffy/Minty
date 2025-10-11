@@ -1,6 +1,8 @@
 ﻿namespace Minty.Services.Dialogs.Controllers;
 
 using Interfaces;
+using ViewModels;
+using Views;
 using App = Minty.App;
 
 [RegisterTransient]
@@ -18,32 +20,70 @@ public sealed class DialogController : IDialogController
 	/// <summary>
 	/// Creates an error dialog with the provided parameters.
 	/// </summary>
-	public Task ShowErrorDialogAsync(string title, string message)
-		=> throw new NotImplementedException();
+	public async Task ShowErrorDialogAsync(string title, string message)
+	{
+		var viewModel = new ErrorDialogViewModel() { Message = message };
+		var content = new ErrorDialog() { DataContext = viewModel };
+		await ShowContentDialogAsync(title, content, primaryButtonText: "Okay");
+	}
 
 	/// <summary>
 	/// Creates a success dialog with the provided parameters.
 	/// </summary>
-	public Task ShowSuccessDialogAsync(string title, string message)
-		=> throw new NotImplementedException();
+	public async Task ShowSuccessDialogAsync(string title, string message)
+	{
+		var viewModel = new SuccessDialogViewModel() { Message = message };
+		var content = new SuccessDialog() { DataContext = viewModel };
+		await ShowContentDialogAsync(title, content, primaryButtonText: "Okay");
+	}
 
 	/// <summary>
 	/// Creates a warning dialog with the provided parameters.
 	/// </summary>
-	public Task ShowWarningDialogAsync(string title, string message)
-		=> throw new NotImplementedException();
+	public async Task ShowWarningDialogAsync(string title, string message)
+	{
+		var viewModel = new WarningDialogViewModel() { Message = message };
+		var content = new WarningDialog() { DataContext = viewModel };
+		await ShowContentDialogAsync(title, content, primaryButtonText: "Okay");
+	}
 
 	/// <summary>
 	/// Creates an info dialog with the provided parameters.
 	/// </summary>
-	public Task ShowInfoDialogAsync(string title, string message)
-		=> throw new NotImplementedException();
+	public async Task ShowInfoDialogAsync(string title, string message)
+	{
+		var viewModel = new InfoDialogViewModel() { Message = message };
+		var content = new InfoDialog() { DataContext = viewModel };
+		await ShowContentDialogAsync(title, content, primaryButtonText: "Okay");
+	}
 
 	/// <summary>
 	/// Creates an exception dialog with the provided parameters.
 	/// </summary>
-	public Task ShowExceptionDialogAsync(string title, string message, Exception ex, bool showReportButton = true)
-		=> throw new NotImplementedException();
+	public async Task ShowExceptionDialogAsync(string title, string message, Exception ex, bool showReportButton = true)
+	{
+		var viewModel = new ExceptionDialogViewModel()
+		{
+			Message = message,
+			Exception = ex,
+			ShowReportButton = showReportButton
+		};
+
+		var content = new ExceptionDialog()
+		{
+			DataContext = viewModel
+		};
+
+		var result = await ShowContentDialogAsync(
+			title,
+			content,
+			primaryButtonText: "Okay",
+			secondaryButtonText: showReportButton ? "Report" : null
+			);
+
+		if(result == ContentDialogResult.Secondary && showReportButton)
+			OpenGithubIssues();
+	}
 
 	#endregion
 
