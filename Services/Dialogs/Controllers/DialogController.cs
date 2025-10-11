@@ -81,7 +81,7 @@ public sealed class DialogController
 			);
 
 		if(result == ContentDialogResult.Secondary && showReportButton)
-			OpenGithubIssues();
+			OpenGithubIssues(ex, message);
 	}
 
 	#endregion
@@ -127,13 +127,13 @@ public sealed class DialogController
 	/// <summary>
 	/// Start the GitHub issues page in the default browser.
 	/// </summary>
-	private void OpenGithubIssues()
+	private void OpenGithubIssues(Exception? exception = null, string? message = null)
 	{
 		try
 		{
 			Process.Start(new ProcessStartInfo
 			{
-				FileName = "https://github.com/riffy/Minty/issues",
+				FileName = GitHubHelper.NewIssue.CreateExceptionIssue(exception, message),
 				UseShellExecute = true
 			});
 		}
