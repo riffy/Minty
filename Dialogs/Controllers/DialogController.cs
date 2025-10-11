@@ -1,9 +1,5 @@
 ﻿namespace Minty.Dialogs.Controllers;
 
-using Minty.Dialogs.ViewModels;
-using Minty.Dialogs.Views;
-using App = Minty.App;
-
 [RegisterSingleton]
 public sealed class DialogController
 {
