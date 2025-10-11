@@ -10,6 +10,16 @@
 	x:DataType="vm:HomePageViewModel">
 	<StackPanel>
 		<TextBlock Text="{x:Static lang:Resources.App_Title}" />
+
+		<StackPanel Orientation="Horizontal" Spacing="4">
+			<Button Content="Show Info Dialog" Command="{Binding ShowInfoDialogTestCommand}" />
+			<Button Content="Show Warning Dialog" Command="{Binding ShowWarningDialogTestCommand}" />
+			<Button Content="Show Success Dialog" Command="{Binding ShowSuccessDialogTestCommand}" />
+			<Button Content="Show Error Dialog" Command="{Binding ShowErrorDialogTestCommand}" />
+			<Button Content="Show Exception Dialog" Command="{Binding ShowExceptionDialogWithoutReportTestCommand}" />
+			<Button Content="Show Exception Dialog (with report)" Command="{Binding ShowExceptionDialogTestCommand}" />
+		</StackPanel>
+
 	</StackPanel>
 </UserControl>
 

@@ -52,6 +52,26 @@
 			<DependentUpon>MainWindow.axaml</DependentUpon>
 			<SubType>Code</SubType>
 		</Compile>
+		<Compile Update="Dialogs\Views\InfoDialog.axaml.cs">
+			<DependentUpon>InfoDialog.axaml</DependentUpon>
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Update="Dialogs\Views\ErrorDialog.axaml.cs">
+			<DependentUpon>ErrorDialog.axaml</DependentUpon>
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Update="Dialogs\Views\SuccessDialog.axaml.cs">
+		  <DependentUpon>SuccessDialog.axaml</DependentUpon>
+		  <SubType>Code</SubType>
+		</Compile>
+		<Compile Update="Dialogs\Views\WarningDialog.axaml.cs">
+		  <DependentUpon>WarningDialog.axaml</DependentUpon>
+		  <SubType>Code</SubType>
+		</Compile>
+		<Compile Update="Dialogs\Views\ExceptionDialog.axaml.cs">
+		  <DependentUpon>ExceptionDialog.axaml</DependentUpon>
+		  <SubType>Code</SubType>
+		</Compile>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -64,5 +84,13 @@
 			<AutoGen>True</AutoGen>
 			<DependentUpon>Resources.resx</DependentUpon>
 		</Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <AdditionalFiles Include="Dialogs\Views\ErrorDialog.axaml" />
+	  <AdditionalFiles Include="Dialogs\Views\ExceptionDialog.axaml" />
+	  <AdditionalFiles Include="Dialogs\Views\InfoDialog.axaml" />
+	  <AdditionalFiles Include="Dialogs\Views\SuccessDialog.axaml" />
+	  <AdditionalFiles Include="Dialogs\Views\WarningDialog.axaml" />
 	</ItemGroup>
 </Project>
