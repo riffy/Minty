@@ -52,6 +52,22 @@
 			<DependentUpon>MainWindow.axaml</DependentUpon>
 			<SubType>Code</SubType>
 		</Compile>
+		<Compile Update="Services\Dialogs\Views\InfoDialog.axaml.cs">
+		  <DependentUpon>InfoDialog.axaml</DependentUpon>
+		  <SubType>Code</SubType>
+		</Compile>
+		<Compile Update="Services\Dialogs\Views\SuccessDialog.axaml.cs">
+		  <DependentUpon>SuccessDialog.axaml</DependentUpon>
+		  <SubType>Code</SubType>
+		</Compile>
+		<Compile Update="Services\Dialogs\Views\WarningDialog.axaml.cs">
+		  <DependentUpon>WarningDialog.axaml</DependentUpon>
+		  <SubType>Code</SubType>
+		</Compile>
+		<Compile Update="Services\Dialogs\Views\ExceptionDialog.axaml.cs">
+		  <DependentUpon>ExceptionDialog.axaml</DependentUpon>
+		  <SubType>Code</SubType>
+		</Compile>
 	</ItemGroup>
 
 	<ItemGroup>
