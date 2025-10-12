@@ -1,6 +1,6 @@
 ﻿namespace Minty.Dialogs.Views;
 
-public partial class InfoDialog : UserControl
+public sealed partial class InfoDialog : UserControl
 {
 	public InfoDialog()
 	{

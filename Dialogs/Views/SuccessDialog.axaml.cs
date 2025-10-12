@@ -1,6 +1,6 @@
 ﻿namespace Minty.Dialogs.Views;
 
-public partial class SuccessDialog : UserControl
+public sealed partial class SuccessDialog : UserControl
 {
 	public SuccessDialog()
 	{

@@ -11,9 +11,21 @@ public static class GitHubHelper
 	public static class NewIssue
 	{
 		/// <summary>
+		/// Opens a new GitHub issue in the default web browser based on the specified exception and message.
+		/// </summary>
+		/// <param name="exception">The exception details to include in the issue (optional).</param>
+		/// <param name="message">A custom message to include in the issue (optional).</param>
+		public static void OpenGithubIssueReport(Exception? exception = null, string? message = null) =>
+			Process.Start(new ProcessStartInfo
+			{
+				FileName = CreateExceptionIssue(exception, message),
+				UseShellExecute = true
+			});
+
+		/// <summary>
 		/// Creates a new issue on GitHub and return the url to the issue to open it.
 		/// </summary>
-		public static string CreateExceptionIssue(Exception? exception, string? message)
+		private static string CreateExceptionIssue(Exception? exception, string? message)
 		{
 			var title = CreateIssueTitle(message);
 			var body = CreateExceptionBody(exception, message);

@@ -47,6 +47,7 @@ global using Minty.Windows.Main.Data;
 global using Minty.Windows.Main.Events;
 global using Minty.Windows.Main.ViewModels;
 global using Minty.Windows.Main.Views;
+global using Minty.Dialogs.Controllers;
 global using Minty.Dialogs.ViewModels;
 global using Minty.Dialogs.Views;
 global using Minty.Dialogs.Base;
