@@ -7,19 +7,20 @@ public sealed partial class MainScreen : UserControl
 		InitializeComponent();
 	}
 
+	/// <summary>
+	/// Handles the event triggered when the selection in the navigation panel changes.
+	/// Based on the selected item, it directs navigation to the appropriate target view model or page.
+	/// </summary>
+	/// <param name="sender">The source of the event, typically the navigation panel control.</param>
+	/// <param name="e">The event data containing details of the selection change, including the selected item.</param>
 	private async void NavigationPanel_OnSelectionChanged(object? sender, NavigationViewSelectionChangedEventArgs e)
 	{
 		if (DataContext is not MainScreenViewModel viewModel) return;
 
 		switch (e.SelectedItem)
 		{
-			case NavigationViewItem { Tag: NavigationCategory cat }:
-				// viewModel.NavigateTo(cat);
-				Console.WriteLine($"NavigationViewItem: {cat.Name}");
-				break;
-			case NavigationCategory category:
-				if (category.Target is not null)
-					viewModel.NavigateTo(category.Target);
+			case NavigationItem category:
+				viewModel.NavigateTo(category.Target);
 				break;
 			case NavigationViewItem {Tag: "Settings" or "Einstellungen"}:
 				viewModel.NavigateTo(typeof(SettingsPageViewModel));

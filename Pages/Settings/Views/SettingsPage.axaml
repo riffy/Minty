@@ -5,15 +5,16 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:fluent="clr-namespace:FluentAvalonia.UI.Controls;assembly=FluentAvalonia"
 	xmlns:vm="using:Minty.Pages.Settings.ViewModels"
+	xmlns:lang="using:Minty.Localization"
 	mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
 	x:Class="Minty.Pages.Settings.Views.SettingsPage"
 	x:DataType="vm:SettingsPageViewModel">
 	<ScrollViewer>
 		<StackPanel Spacing="8">
 			<fluent:SettingsExpander
-				Header="App Theme"
+				Header="{x:Static lang:Resources.Setting_App_Theme_Title}"
 				IconSource="DarkTheme"
-				Description="Change the current app theme">
+				Description="{x:Static lang:Resources.Setting_App_Theme_Description}">
 				<fluent:SettingsExpander.Footer>
 					<ComboBox
 						SelectedItem="{Binding SelectedTheme}"
@@ -22,12 +23,32 @@
 				</fluent:SettingsExpander.Footer>
 			</fluent:SettingsExpander>
 			<fluent:SettingsExpander
+				Header="{x:Static lang:Resources.Setting_Repository_Title}"
+				Description="{Binding RepositoryDescriptor}"
+				IconSource="Library">
+				<fluent:SettingsExpander.Footer>
+					<StackPanel Orientation="Horizontal" Spacing="8">
+						<Button
+							Content="Select"
+							Command="{Binding ShowRepositorySelectDialogCommand}"/>
+						<Button
+							Content="Open"
+							IsEnabled="{Binding RepositoryIsSelected}"
+							Command="{Binding OpenRepositoryFolderCommand}"/>
+						<Button
+							Content="Clear"
+							IsEnabled="{Binding RepositoryIsSelected}"
+							Command="{Binding ClearRepositoryPathCommand}"/>
+					</StackPanel>
+				</fluent:SettingsExpander.Footer>
+			</fluent:SettingsExpander>
+			<fluent:SettingsExpander
 				IconSource="Folder"
-				Header="App Data"
-				Description="Where config and database is located">
+				Header="{x:Static lang:Resources.Setting_App_DataFolder_Title}"
+				Description="{x:Static lang:Resources.Setting_App_DataFolder_Description}">
 				<fluent:SettingsExpander.Footer>
 					<Button
-						Content="Open"
+						Content="{x:Static lang:Resources.Open}"
 						Command="{Binding OpenAppDataFolderCommand}"/>
 				</fluent:SettingsExpander.Footer>
 			</fluent:SettingsExpander>

@@ -52,6 +52,8 @@
 			<DependentUpon>MainWindow.axaml</DependentUpon>
 			<SubType>Code</SubType>
 		</Compile>
+		<Compile Update="Pages\Repositories\Views\RepositoryPage.axaml.cs">
+		  <DependentUpon>RepositoryPage.axaml</DependentUpon>
 		<Compile Update="Dialogs\Views\InfoDialog.axaml.cs">
 			<DependentUpon>InfoDialog.axaml</DependentUpon>
 			<SubType>Code</SubType>

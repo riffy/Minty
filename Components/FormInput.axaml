@@ -1,0 +1,155 @@
+<Styles
+	xmlns="https://github.com/avaloniaui"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:controls="using:Minty.Components"
+	xmlns:fluent="clr-namespace:FluentAvalonia.UI.Controls;assembly=FluentAvalonia">
+	<Design.PreviewWith>
+		<ScrollViewer Padding="20">
+	        <StackPanel Spacing="0">
+	            <TextBlock Text="User Registration Form"
+	                      FontSize="24"
+	                      FontWeight="Bold"
+	                      Margin="0,0,0,20"/>
+
+	            <!-- Text Input Example -->
+	            <controls:FormInput Label="Username:"
+	                              IsRequired="True">
+	                <controls:FormInput.Content>
+	                    <TextBox
+	                            Watermark="Enter username"
+	                            BorderThickness="0"/>
+	                </controls:FormInput.Content>
+	            </controls:FormInput>
+
+	            <!-- Email Input Example -->
+	            <controls:FormInput Label="Email:"
+	                                IsRequired="True"
+	                                ErrorMessage="Error with email">
+	                <controls:FormInput.Content>
+	                    <TextBox
+	                            Watermark="your.email@example.com"
+	                            BorderThickness="0"/>
+	                </controls:FormInput.Content>
+	            </controls:FormInput>
+
+	            <!-- Number Input Example -->
+	            <controls:FormInput Label="Age:"
+	                                IsRequired="False"
+	                                ErrorMessage="Error with age">
+	                <controls:FormInput.Content>
+	                    <NumericUpDown
+	                                  Minimum="18"
+	                                  Maximum="120"
+	                                  BorderThickness="0"/>
+	                </controls:FormInput.Content>
+	            </controls:FormInput>
+
+	            <!-- Dropdown Example -->
+	            <controls:FormInput Label="Country:"
+	                                IsRequired="True"
+	                                ErrorMessage="Error with country">
+	                <controls:FormInput.Content>
+	                    <ComboBox
+	                             PlaceholderText="Select a country"
+	                             HorizontalAlignment="Stretch"
+	                             BorderThickness="0"/>
+	                </controls:FormInput.Content>
+	            </controls:FormInput>
+
+	            <!-- Password Example -->
+	            <controls:FormInput Label="Password:"
+	                                IsRequired="True"
+	                                ErrorMessage="Error with password">
+	                <controls:FormInput.Content>
+	                    <TextBox
+	                            PasswordChar="•"
+	                            Watermark="Enter password"
+	                            BorderThickness="0"/>
+	                </controls:FormInput.Content>
+	            </controls:FormInput>
+
+	            <!-- Checkbox Example -->
+	            <controls:FormInput Label="Preferences:"
+	                                IsRequired="False">
+	                <controls:FormInput.Content>
+	                    <StackPanel Spacing="8">
+	                        <CheckBox Content="Receive newsletter"
+	                                 IsChecked="True"/>
+	                        <CheckBox Content="Accept terms and conditions"
+	                                 IsChecked="False"/>
+	                    </StackPanel>
+	                </controls:FormInput.Content>
+	            </controls:FormInput>
+
+	            <Button Content="Submit"
+	                   Margin="150,20,0,0"
+	                   HorizontalAlignment="Left"
+	                   Padding="20,10"/>
+	        </StackPanel>
+	    </ScrollViewer>
+	</Design.PreviewWith>
+
+	<Style Selector="controls|FormInput">
+		<!-- Set Defaults -->
+		<Setter Property="Template">
+			<ControlTemplate>
+                <Grid RowDefinitions="Auto,Auto,Auto">
+                    <!-- Label Row -->
+                    <Grid Grid.Row="0" ColumnDefinitions="Auto,*">
+                        <StackPanel Grid.Column="0" Orientation="Horizontal">
+                            <TextBlock Text="{TemplateBinding Label}"
+                                     VerticalAlignment="Center"
+                                     Width="{TemplateBinding LabelWidth}"
+                                     Margin="0,0,8,0"
+                                     FontWeight="Medium"/>
+                            <TextBlock Text="*"
+                                     Foreground="#D32F2F"
+                                     IsVisible="{TemplateBinding IsRequired}"
+                                     FontWeight="Bold"
+                                     VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Grid>
+
+                    <!-- Content Row with Border -->
+                    <Grid Grid.Row="1" ColumnDefinitions="Auto,*" Margin="0,6,0,0">
+                        <Border Grid.Column="1"
+                              Name="PART_ContentBorder"
+                              BorderThickness="2"
+                              BorderBrush="#BDBDBD"
+                              CornerRadius="4"
+                              Padding="10,8">
+                            <ContentPresenter Content="{TemplateBinding Content}"
+                                            HorizontalAlignment="Stretch"
+                                            VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+
+                    <!-- Error Message Row -->
+                    <Grid Grid.Row="2" ColumnDefinitions="Auto,*" Margin="0,4,0,0">
+                        <Border Grid.Column="1"
+                              Background="#FFEBEE"
+                              CornerRadius="4"
+                              Padding="8,6"
+                              IsVisible="{TemplateBinding HasError}">
+                            <StackPanel Orientation="Horizontal" Spacing="6">
+	                            <fluent:SymbolIcon Symbol="AlertOnFilled" Foreground="#D32F2F" />
+                                <TextBlock Text="{TemplateBinding ErrorMessage}"
+                                         Foreground="#C62828"
+                                         FontSize="13"
+                                         TextWrapping="Wrap"
+                                         VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+                </Grid>
+            </ControlTemplate>
+		</Setter>
+	</Style>
+
+	<!-- Error State Override -->
+	<Style Selector="controls|FormInput[HasError=true] /template/ Border#PART_ContentBorder">
+		<Setter Property="BorderBrush" Value="#D32F2F"/>
+		<Setter Property="Background" Value="#FFEBEE"/>
+	</Style>
+</Styles>
+

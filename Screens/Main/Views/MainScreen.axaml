@@ -31,10 +31,19 @@
 	        </fluent:NavigationView.Content>
 	        <fluent:NavigationView.MenuItemTemplateSelector>
                 <models:NavigationItemTemplateSelector>
-                    <DataTemplate DataType="{x:Type models:NavigationCategory}">
-                        <fluent:NavigationViewItem Content="{Binding Name}" IconSource="{Binding Icon}" />
+                    <DataTemplate DataType="{x:Type models:NavigationItem}">
+                        <fluent:NavigationViewItem
+	                        Content="{Binding Name}"
+	                        IconSource="{Binding Icon}"
+	                        IsEnabled="{Binding IsEnabled}"/>
                     </DataTemplate>
-                    <models:NavigationItemTemplateSelector.ItemTemplateWithChildren>
+	                <models:NavigationItemTemplateSelector.HeaderTemplate>
+		                <DataTemplate DataType="{x:Type models:NavigationHeader}">
+			                <fluent:NavigationViewItemHeader
+				                Content="{Binding Name}"/>
+		                </DataTemplate>
+	                </models:NavigationItemTemplateSelector.HeaderTemplate>
+                    <models:NavigationItemTemplateSelector.CategoryTemplate>
 	                    <!-- TODO: Category with children -->
 	                    <!--
 	                    <DataTemplate DataType="{x:Type m:CategoryWithChildren}">
@@ -45,7 +54,7 @@
                                 SelectsOnInvoked="False" />
                         </DataTemplate>
                         -->
-                    </models:NavigationItemTemplateSelector.ItemTemplateWithChildren>
+                    </models:NavigationItemTemplateSelector.CategoryTemplate>
                     <models:NavigationItemTemplateSelector.SeparatorTemplate>
                         <DataTemplate DataType="{x:Type models:NavigationSeperator}">
                             <fluent:NavigationViewItemSeparator />
