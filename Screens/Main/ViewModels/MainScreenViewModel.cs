@@ -44,11 +44,20 @@ public sealed partial class MainScreenViewModel : ViewModelBase
 		NavigationCategories.Add(_homePageViewModel.NavigationItem);
 		NavigationCategories.Add(_repositoryController.NavigationItem);
 		#if DEBUG
+		NavigationCategories.Add(new NavigationSeperator());
+		NavigationCategories.Add(new NavigationHeader { Name = "Debug" });
+
 		NavigationCategories.Add(new NavigationItem
 		{
 			Name = "Icons",
 			Icon = Symbol.Home,
-			Target = typeof(DevIconPageViewModel)
+			Target = typeof(DebugIconsPageViewModel)
+		});
+		NavigationCategories.Add(new NavigationItem
+		{
+			Name = "Dialogs",
+			Icon = Symbol.LeaveChat,
+			Target = typeof(DebugDialogsPageViewModel)
 		});
 		#endif
 

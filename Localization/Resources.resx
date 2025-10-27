@@ -66,4 +66,7 @@
 	<data name="Nav_Categories" xml:space="preserve">
 		<value>Categories ({0})</value>
 	</data>
+	<data name="Page_Home_Title" xml:space="preserve">
+		<value>Home</value>
+	</data>
 </root>

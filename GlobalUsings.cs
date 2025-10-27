@@ -34,7 +34,7 @@ global using Microsoft.Extensions.DependencyInjection;
 global using Minty.Core.Models;
 global using Minty.Helpers;
 global using Minty.Localization;
-global using Minty.Pages.DevIcon.ViewModels;
+global using Minty.Pages.Debug.ViewModels;
 global using Minty.Pages.Home.ViewModels;
 global using Minty.Pages.Repositories.Controllers;
 global using Minty.Pages.Repositories.ViewModels;

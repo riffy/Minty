@@ -1,8 +1,8 @@
-namespace Minty.Pages.DevIcon.Views;
+namespace Minty.Pages.Debug.Views;
 
-public partial class DevIconPage : UserControl
+public partial class DebugIconsPage : UserControl
 {
-	public DevIconPage()
+	public DebugIconsPage()
 	{
 		InitializeComponent();
 		CreateIconDisplays();
