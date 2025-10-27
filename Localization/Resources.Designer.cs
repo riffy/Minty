@@ -146,5 +146,53 @@ namespace Minty.Localization {
                 return ResourceManager.GetString("Page_Home_Title", resourceCulture);
             }
         }
+        
+        public static string Diag_NewRepo_Title {
+            get {
+                return ResourceManager.GetString("Diag_NewRepo_Title", resourceCulture);
+            }
+        }
+        
+        public static string Diag_NewRepo_Warn_InvalidDirectory {
+            get {
+                return ResourceManager.GetString("Diag_NewRepo_Warn_InvalidDirectory", resourceCulture);
+            }
+        }
+        
+        public static string Diag_Exception_Title {
+            get {
+                return ResourceManager.GetString("Diag_Exception_Title", resourceCulture);
+            }
+        }
+        
+        public static string Diag_Exception_Description {
+            get {
+                return ResourceManager.GetString("Diag_Exception_Description", resourceCulture);
+            }
+        }
+        
+        public static string Diag_Info_Title {
+            get {
+                return ResourceManager.GetString("Diag_Info_Title", resourceCulture);
+            }
+        }
+        
+        public static string Diag_Warn_Title {
+            get {
+                return ResourceManager.GetString("Diag_Warn_Title", resourceCulture);
+            }
+        }
+        
+        public static string Diag_Success_Title {
+            get {
+                return ResourceManager.GetString("Diag_Success_Title", resourceCulture);
+            }
+        }
+        
+        public static string Diag_Error_Title {
+            get {
+                return ResourceManager.GetString("Diag_Error_Title", resourceCulture);
+            }
+        }
     }
 }

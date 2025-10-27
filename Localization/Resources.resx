@@ -69,4 +69,28 @@
 	<data name="Page_Home_Title" xml:space="preserve">
 		<value>Home</value>
 	</data>
+	<data name="Diag_NewRepo_Title" xml:space="preserve">
+		<value>New Repository</value>
+	</data>
+	<data name="Diag_NewRepo_Warn_InvalidDirectory" xml:space="preserve">
+		<value>The selected path / directory is invalid or does not exist.</value>
+	</data>
+	<data name="Diag_Exception_Title" xml:space="preserve">
+		<value>Critical Error</value>
+	</data>
+	<data name="Diag_Exception_Description" xml:space="preserve">
+		<value>An exception occured during the program execution</value>
+	</data>
+	<data name="Diag_Info_Title" xml:space="preserve">
+		<value>Info</value>
+	</data>
+	<data name="Diag_Warn_Title" xml:space="preserve">
+		<value>Warning</value>
+	</data>
+	<data name="Diag_Success_Title" xml:space="preserve">
+		<value>Success</value>
+	</data>
+	<data name="Diag_Error_Title" xml:space="preserve">
+		<value>Error</value>
+	</data>
 </root>

@@ -2,7 +2,7 @@ namespace Minty.Pages.Repositories.Controllers;
 
 [RegisterSingleton]
 public sealed class RepositoryController(LogController logController, AppConfigController appConfigController,
-	RepositoryService repositoryService, RepositoryEvents repositoryEvents)
+	RepositoryService repositoryService, RepositoryEvents repositoryEvents, DialogController dialogController)
 {
 	/// <summary>
 	/// Initializes the repository by setting up necessary paths and loading the repository data.
@@ -58,23 +58,30 @@ public sealed class RepositoryController(LogController logController, AppConfigC
 	/// <returns>Returns a task that represents the asynchronous operation.</returns>
 	public async Task SetNewRepository(string path)
 	{
-		if (string.IsNullOrEmpty(path))
-			return;
-		if (path == appConfigController.Config.RepositoryPath)
-			return;
-		if (!Directory.Exists(path))
+		try
 		{
-			// TODO: Show error message as Error Dialog
-			logController.Warn($"Selected folder is invalid: {path}");
-			return;
+			if (string.IsNullOrEmpty(path))
+				return;
+			if (path == appConfigController.Config.RepositoryPath)
+				return;
+			if (!Directory.Exists(path))
+			{
+				logController.Info($"Selected folder is invalid or does not exist: {path}");
+				dialogController.ShowWarningDialogAsync(Resources.Diag_NewRepo_Warn_InvalidDirectory);
+				return;
+			}
+			appConfigController.Config.RepositoryPath = path;
+			await appConfigController.SaveConfigToFile();
+			// TODO: Show content dialog with loading of repository
+			Repository = await repositoryService.LoadRepository(path);
+			NavigationItem.IsEnabled = true;
+			repositoryEvents.NewRepositoryApplied(Repository);
 		}
-		appConfigController.Config.RepositoryPath = path;
-		await appConfigController.SaveConfigToFile();
-		// TODO: Show content dialog with loading of repository
-		// TODO: Show possible error dialog on exception
-		Repository = await repositoryService.LoadRepository(path);
-		NavigationItem.IsEnabled = true;
-		repositoryEvents.NewRepositoryApplied(Repository);
+		catch (Exception ex)
+		{
+			logController.Exception(ex);
+			dialogController.ShowExceptionDialogAsync(ex);
+		}
 	}
 
 	/// <summary>

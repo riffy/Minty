@@ -13,7 +13,6 @@
 			<Button Content="Show Warning Dialog" Command="{Binding ShowWarningDialogTestCommand}" />
 			<Button Content="Show Success Dialog" Command="{Binding ShowSuccessDialogTestCommand}" />
 			<Button Content="Show Error Dialog" Command="{Binding ShowErrorDialogTestCommand}" />
-			<Button Content="Show Exception Dialog" Command="{Binding ShowExceptionDialogWithoutReportTestCommand}" />
 			<Button Content="Show Exception Dialog (with report)" Command="{Binding ShowExceptionDialogTestCommand}" />
 		</StackPanel>
 	</StackPanel>

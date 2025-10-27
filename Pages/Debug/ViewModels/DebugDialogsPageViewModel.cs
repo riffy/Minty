@@ -5,22 +5,21 @@ public sealed partial class DebugDialogsPageViewModel(DialogController dialogCon
 {
 	[RelayCommand]
 	private async Task ShowErrorDialogTestAsync()
-		=> await dialogController.ShowErrorDialogAsync("Error", "This is an error");
+		=> await dialogController.ShowErrorDialogAsync("This is an error");
 
 	[RelayCommand]
 	private async Task ShowWarningDialogTestAsync()
-		=> await dialogController.ShowWarningDialogAsync("Warning", "This is an warning");
+		=> await dialogController.ShowWarningDialogAsync("This is a warning");
 
 	[RelayCommand]
 	private async Task ShowInfoDialogTestAsync()
-		=> await dialogController.ShowInfoDialogAsync("Info", "This is an info");
+		=> await dialogController.ShowInfoDialogAsync("This is an info");
 
 	[RelayCommand]
 	private async Task ShowSuccessDialogTestAsync()
-		=> await dialogController.ShowSuccessDialogAsync("Success", "This is an success");
+		=> await dialogController.ShowSuccessDialogAsync("This is a success");
 
 	[RelayCommand]
-
 	private async Task ShowExceptionDialogTestAsync()
 	{
 		try
@@ -29,20 +28,7 @@ public sealed partial class DebugDialogsPageViewModel(DialogController dialogCon
 		}
 		catch (Exception ex)
 		{
-			await dialogController.ShowExceptionDialogAsync("Fehler 1", "Beim irgendwas tun kaputt gegangen", ex, showReportButton: true);
-		}
-	}
-
-	[RelayCommand]
-	private async Task ShowExceptionDialogWithoutReportTestAsync()
-	{
-		try
-		{
-			throw new InvalidOperationException("Das ist eine Beispiel absturz nachricht ohne report funktion");
-		}
-		catch (Exception ex)
-		{
-			await dialogController.ShowExceptionDialogAsync("Fehler 2", "Beim irgendwas tun kaputt gegangen nur ohne report", ex, showReportButton: false);
+			await dialogController.ShowExceptionDialogAsync(ex);
 		}
 	}
 }
