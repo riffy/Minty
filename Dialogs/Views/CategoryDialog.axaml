@@ -1,0 +1,44 @@
+<UserControl
+	xmlns="https://github.com/avaloniaui"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:vm="using:Minty.Dialogs.ViewModels"
+	xmlns:comps="using:Minty.Components"
+	xmlns:fluent="using:FluentAvalonia.UI.Controls"
+	mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="800"
+	x:Class="Minty.Dialogs.Views.CategoryDialog"
+	x:DataType="vm:CategoryDialogViewModel">
+	<ScrollViewer Padding="20">
+		<StackPanel Spacing="0">
+			<comps:FormInputSbs
+				Label="Name"
+				IsRequired="True"
+				ErrorMessage="{Binding NameValidationMessage}">
+				<comps:FormInputSbs.Content>
+					<TextBox
+						MaxLength="10"
+						Text="{Binding Name}" />
+				</comps:FormInputSbs.Content>
+			</comps:FormInputSbs>
+			<comps:FormInputSbs Label="Icon">
+				<comps:FormInputSbs.Content>
+					<ComboBox
+						ItemsSource="{Binding AvailableIcons}"
+						SelectedItem="{Binding SelectedIcon}"
+						Width="300">
+						<ComboBox.ItemTemplate>
+							<DataTemplate>
+								<StackPanel Width="250" Orientation="Horizontal" Spacing="10">
+									<fluent:SymbolIcon Symbol="{Binding}" FontSize="16" />
+									<TextBlock Text="{Binding}" VerticalAlignment="Center" />
+								</StackPanel>
+							</DataTemplate>
+						</ComboBox.ItemTemplate>
+					</ComboBox>
+				</comps:FormInputSbs.Content>
+			</comps:FormInputSbs>
+		</StackPanel>
+	</ScrollViewer>
+</UserControl>
+

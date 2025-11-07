@@ -1,23 +1,23 @@
 namespace Minty.Pages.Debug.ViewModels;
 
 [RegisterSingleton]
-public sealed partial class DebugDialogsPageViewModel(DialogController dialogController) : ViewModelBase
+public sealed partial class DebugDialogsPageViewModel(MessageBoxController messageBoxController) : ViewModelBase
 {
 	[RelayCommand]
 	private async Task ShowErrorDialogTestAsync()
-		=> await dialogController.ShowErrorDialogAsync("This is an error");
+		=> await messageBoxController.ShowErrorAsync("This is an error");
 
 	[RelayCommand]
 	private async Task ShowWarningDialogTestAsync()
-		=> await dialogController.ShowWarningDialogAsync("This is a warning");
+		=> await messageBoxController.ShowWarningAsync("This is a warning");
 
 	[RelayCommand]
 	private async Task ShowInfoDialogTestAsync()
-		=> await dialogController.ShowInfoDialogAsync("This is an info");
+		=> await messageBoxController.ShowInfoAsync("This is an info");
 
 	[RelayCommand]
 	private async Task ShowSuccessDialogTestAsync()
-		=> await dialogController.ShowSuccessDialogAsync("This is a success");
+		=> await messageBoxController.ShowSuccessAsync("This is a success");
 
 	[RelayCommand]
 	private async Task ShowExceptionDialogTestAsync()
@@ -28,7 +28,7 @@ public sealed partial class DebugDialogsPageViewModel(DialogController dialogCon
 		}
 		catch (Exception ex)
 		{
-			await dialogController.ShowExceptionDialogAsync(ex);
+			await messageBoxController.ShowExceptionAsync(ex);
 		}
 	}
 }

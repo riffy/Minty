@@ -17,6 +17,7 @@ public sealed class NavigationItemTemplateSelector : DataTemplateSelector
 		{
 			NavigationSeperator => SeparatorTemplate,
 			NavigationHeader => HeaderTemplate,
+			NavigationCategory => CategoryTemplate,
 			_ => ItemTemplate
 		};
 }

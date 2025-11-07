@@ -1,0 +1,146 @@
+<Styles
+	xmlns="https://github.com/avaloniaui"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:controls="using:Minty.Components"
+	xmlns:fluent="clr-namespace:FluentAvalonia.UI.Controls;assembly=FluentAvalonia">
+	<Design.PreviewWith>
+		<ScrollViewer Padding="20">
+	        <StackPanel Spacing="5">
+	            <TextBlock Text="User Registration Form"
+	                      FontSize="24"
+	                      FontWeight="Bold"
+	                      Margin="0,0,0,20"/>
+
+	            <!-- Text Input Example -->
+	            <controls:FormInputSbs Label="Username"
+	                              IsRequired="True">
+	                <controls:FormInputSbs.Content>
+	                    <TextBox Watermark="Enter username"/>
+	                </controls:FormInputSbs.Content>
+	            </controls:FormInputSbs>
+
+	            <!-- Email Input Example -->
+	            <controls:FormInputSbs Label="Email"
+	                                IsRequired="True"
+	                                ErrorMessage="Error with email">
+	                <controls:FormInputSbs.Content>
+	                    <TextBox Watermark="your.email@example.com"/>
+	                </controls:FormInputSbs.Content>
+	            </controls:FormInputSbs>
+
+	            <!-- Number Input Example -->
+	            <controls:FormInputSbs Label="Age"
+	                                IsRequired="False"
+	                                ErrorMessage="Error with age">
+	                <controls:FormInputSbs.Content>
+	                    <NumericUpDown Minimum="18" Maximum="120"/>
+	                </controls:FormInputSbs.Content>
+	            </controls:FormInputSbs>
+
+	            <!-- Dropdown Example -->
+	            <controls:FormInputSbs Label="Country"
+	                                IsRequired="True"
+	                                ErrorMessage="Error with country">
+	                <controls:FormInputSbs.Content>
+	                    <ComboBox PlaceholderText="Select a country"
+	                              HorizontalAlignment="Stretch"/>
+	                </controls:FormInputSbs.Content>
+	            </controls:FormInputSbs>
+
+	            <!-- Password Example -->
+	            <controls:FormInputSbs Label="Password"
+	                                IsRequired="True"
+	                                ErrorMessage="Error with password">
+	                <controls:FormInputSbs.Content>
+	                    <TextBox PasswordChar="•"
+	                             Watermark="Enter password"/>
+	                </controls:FormInputSbs.Content>
+	            </controls:FormInputSbs>
+
+	            <!-- Checkbox Example -->
+	            <controls:FormInputSbs Label="Preferences"
+	                                IsRequired="False">
+	                <controls:FormInputSbs.Content>
+		                <Border BorderThickness="2"
+		                        BorderBrush="#BDBDBD"
+		                        CornerRadius="4"
+		                        Padding="10,8">
+			                <StackPanel Spacing="8">
+				                <CheckBox Content="Receive newsletter"
+				                          IsChecked="True"/>
+				                <CheckBox Content="Accept terms and conditions"
+				                          IsChecked="False"/>
+			                </StackPanel>
+		                </Border>
+	                </controls:FormInputSbs.Content>
+	            </controls:FormInputSbs>
+
+	            <Button Content="Submit"
+	                   Margin="150,20,0,0"
+	                   HorizontalAlignment="Left"
+	                   Padding="20,10"/>
+	        </StackPanel>
+	    </ScrollViewer>
+	</Design.PreviewWith>
+
+	<Style Selector="controls|FormInputSbs">
+		<!-- Set Defaults -->
+		<Setter Property="Template">
+			<ControlTemplate>
+                <Grid RowDefinitions="Auto,Auto,Auto" ColumnDefinitions="Auto, *">
+                    <!-- Label Row -->
+                    <StackPanel Grid.Column="0" Grid.Row="0"
+                                Orientation="Horizontal"
+                                Spacing="3"
+                                Width="{TemplateBinding LabelWidth}">
+	                    <TextBlock Text="{TemplateBinding Label}"
+	                               VerticalAlignment="Center"
+	                               FontWeight="Medium"/>
+	                    <TextBlock Text="*"
+	                               Foreground="#D32F2F"
+	                               IsVisible="{TemplateBinding IsRequired}"
+	                               FontWeight="Bold"
+	                               VerticalAlignment="Center"/>
+                    </StackPanel>
+
+                    <!-- Content Row with Border -->
+                    <Border Grid.Column="1" Grid.Row="0"
+                            Name="PART_ContentBorder"
+                            BorderThickness="2"
+                            BorderBrush="Transparent"
+                            CornerRadius="4"
+                            Padding="10,8">
+	                    <ContentPresenter
+		                    Content="{TemplateBinding Content}"
+		                    HorizontalAlignment="Stretch"
+		                    VerticalAlignment="Center"/>
+                    </Border>
+                    <!-- Error Message Row -->
+                    <Border Grid.Column="0" Grid.Row="2"
+                            Grid.ColumnSpan="2"
+                            Background="#FFEBEE"
+                            CornerRadius="4"
+                            Padding="8,6"
+                            Margin="0,5,10,0"
+                            IsVisible="{TemplateBinding HasError}">
+                        <StackPanel Orientation="Horizontal" Spacing="6">
+                            <fluent:SymbolIcon Symbol="AlertOnFilled" Foreground="#D32F2F" />
+                            <TextBlock Text="{TemplateBinding ErrorMessage}"
+                                     Foreground="#C62828"
+                                     FontSize="13"
+                                     TextWrapping="Wrap"
+                                     VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+            </ControlTemplate>
+		</Setter>
+	</Style>
+
+	<!-- Error State Override -->
+	<Style Selector="controls|FormInputSbs[HasError=true] /template/ Border#PART_ContentBorder">
+		<Setter Property="BorderBrush" Value="#D32F2F"/>
+		<Setter Property="Background" Value="#FFEBEE"/>
+	</Style>
+</Styles>
+

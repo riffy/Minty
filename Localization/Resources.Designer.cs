@@ -194,5 +194,29 @@ namespace Minty.Localization {
                 return ResourceManager.GetString("Diag_Error_Title", resourceCulture);
             }
         }
+        
+        public static string MessageBox_Okay {
+            get {
+                return ResourceManager.GetString("MessageBox_Okay", resourceCulture);
+            }
+        }
+        
+        public static string Okay {
+            get {
+                return ResourceManager.GetString("Okay", resourceCulture);
+            }
+        }
+        
+        public static string Cancel {
+            get {
+                return ResourceManager.GetString("Cancel", resourceCulture);
+            }
+        }
+        
+        public static string Report {
+            get {
+                return ResourceManager.GetString("Report", resourceCulture);
+            }
+        }
     }
 }

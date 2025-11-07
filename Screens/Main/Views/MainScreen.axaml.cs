@@ -19,11 +19,14 @@ public sealed partial class MainScreen : UserControl
 
 		switch (e.SelectedItem)
 		{
-			case NavigationItem category:
-				viewModel.NavigateTo(category.Target);
+			case NavigationItem item:
+				viewModel.NavigateTo(item.Target);
 				break;
 			case NavigationViewItem {Tag: "Settings" or "Einstellungen"}:
 				viewModel.NavigateTo(typeof(SettingsPageViewModel));
+				break;
+			case NavigationCategory navCategory:
+				viewModel.NavigateToCategory(navCategory.Category);
 				break;
 		}
 	}

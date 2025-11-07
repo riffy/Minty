@@ -26,7 +26,9 @@
 			               Stretch="Uniform"/>
 					-->
 			        <!-- Content Layer -->
-			        <ContentControl Content="{Binding CurrentPage}" />
+			        <ScrollViewer>
+				        <ContentControl Content="{Binding CurrentPage}" />
+			        </ScrollViewer>
 		        </Grid>
 	        </fluent:NavigationView.Content>
 	        <fluent:NavigationView.MenuItemTemplateSelector>
@@ -44,16 +46,12 @@
 		                </DataTemplate>
 	                </models:NavigationItemTemplateSelector.HeaderTemplate>
                     <models:NavigationItemTemplateSelector.CategoryTemplate>
-	                    <!-- TODO: Category with children -->
-	                    <!--
-	                    <DataTemplate DataType="{x:Type m:CategoryWithChildren}">
-                            <fluent:NavigationViewItem
-                                Content="{Binding Name}"
-                                IconSource="{Binding Icon}"
-                                MenuItemsSource="{Binding Children}"
-                                SelectsOnInvoked="False" />
-                        </DataTemplate>
-                        -->
+	                    <DataTemplate DataType="{x:Type models:NavigationCategory}">
+		                    <fluent:NavigationViewItem
+			                    Content="{Binding Name}"
+			                    IconSource="{Binding Icon}"
+			                    MenuItemsSource="{Binding Children}" />
+	                    </DataTemplate>
                     </models:NavigationItemTemplateSelector.CategoryTemplate>
                     <models:NavigationItemTemplateSelector.SeparatorTemplate>
                         <DataTemplate DataType="{x:Type models:NavigationSeperator}">

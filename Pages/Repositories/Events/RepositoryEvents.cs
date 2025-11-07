@@ -14,4 +14,17 @@ public sealed class RepositoryEvents
 	public void NewRepositoryApplied(Repository? repo) =>
 		OnNewRepository?.Invoke(repo);
 	#endregion
+
+	#region CATEGORIES CHANGED
+
+	public delegate Task CategoriesChangedDelegate();
+
+	/// <summary>
+	/// Event triggered when the categories of the repository are changed.
+	/// </summary>
+	public event CategoriesChangedDelegate? OnCategoriesChanged;
+	public void CategoriesChanged() =>
+		OnCategoriesChanged?.Invoke();
+
+	#endregion
 }

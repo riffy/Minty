@@ -15,33 +15,46 @@ public sealed class RepositoryService(LogController logController)
 		// 1. Check if the path is valid and exists
 		if (string.IsNullOrWhiteSpace(path) || !Directory.Exists(path))
 			throw new ArgumentException($"Given path {path} is invalid");
-		Repository repo = new() { RootPath = path };
+		Repository repo = new()
+		{
+			RootPath = path,
+			Categories = await LoadCategories(path)
+		};
+		return repo;
+	}
 
+	/// <summary>
+	/// Loads the categories from the specified repository path by deserializing category JSON files.
+	/// </summary>
+	/// <param name="repoPath">The path to the repository's root directory containing category definitions.</param>
+	/// <returns>A list of <see cref="RepositoryCategory"/> objects representing the loaded categories.</returns>
+	/// <exception cref="DirectoryNotFoundException">Thrown when the categories directory does not exist.</exception>
+	/// <exception cref="JsonException">Thrown when a category JSON file cannot be deserialized.</exception>
+	/// <exception cref="IOException">Thrown when an error occurs reading category files.</exception>
+	/// <exception cref="Exception">Thrown when an unexpected error occurs while loading categories.</exception>
+	private async Task<List<RepositoryCategory>> LoadCategories(string repoPath)
+	{
+		string categoriesPath = Path.Combine(repoPath, ".categories");
+		if (!Directory.Exists(categoriesPath))
+			return [];
+		List<RepositoryCategory> categories = [];
 		try
 		{
-			var subDirectories = Directory.GetDirectories(path);
-			foreach (var subDirectory in subDirectories)
-			{
-				var categoryJsonPath = Path.Combine(subDirectory, "category.json");
-				if (!File.Exists(categoryJsonPath))
-				{
-					logController.Debug($"No category.json found in {subDirectory}, skipping...");
-					continue;
-				}
-				var meta = await LoadCategoryMetaFromFile(categoryJsonPath);
-				if (meta is null)
-				{
-					logController.Warn($"category.json found in {subDirectory} is not valid.");
-					continue;
-				}
+			// Find all .json files in the categories directory and deserialize them
+			var jsonFiles = Directory.GetFiles(categoriesPath, "*.json", SearchOption.TopDirectoryOnly);
 
-				repo.Categories.Add(new()
+			foreach (var jsonFile in jsonFiles)
+			{
+				var category = JsonSerializer.Deserialize<RepositoryCategory>(await File.ReadAllTextAsync(jsonFile),
+					RepositoryCategory.JsonSerializerOptions);
+				if (category is null)
 				{
-					Name = subDirectory.Split(Path.DirectorySeparatorChar).Last(),
-					Path = subDirectory,
-					Meta = meta
-				});
+					logController.Warn($"JSON file {jsonFile} is not a valid category file.");
+					continue;
+				}
+				categories.Add(category);
 			}
+			categories.Sort((x, y) => string.Compare(x.Name, y.Name, StringComparison.OrdinalIgnoreCase));
 		}
 		catch (Exception ex)
 		{
@@ -49,22 +62,42 @@ public sealed class RepositoryService(LogController logController)
 			throw;
 		}
 
-		return repo;
+		return categories;
 	}
 
-	private async Task<RepositoryCategoryMeta?> LoadCategoryMetaFromFile(string path)
+	/// <summary>
+	/// Creates a new category within the specified repository path, serializes it, and saves it as a JSON file.
+	/// </summary>
+	/// <param name="repoPath">The path to the repository where the category will be created.</param>
+	/// <param name="name">The name of the category to be created.</param>
+	/// <param name="icon">The icon to use for this category.</param>
+	/// <returns>A <see cref="RepositoryCategory"/> object representing the newly created category.</returns>
+	/// <exception cref="NullReferenceException">Thrown when the target directory for the new category does not exist.</exception>
+	/// <exception cref="Exception">Thrown when an error occurs during the creation or saving of the category.</exception>
+	public async Task<RepositoryCategory> CreateCategoryAsync(string repoPath, string name, Symbol icon = Symbol.Folder)
 	{
-		if (!File.Exists(path))
-			return null;
+		string categoriesPath = Path.Combine(repoPath, ".categories");
+		if (!Directory.Exists(categoriesPath))
+			throw new NullReferenceException("Target directory for new category does not exist");
+		if (File.Exists(Path.Combine(categoriesPath, $"{name.ToLowerInvariant()}.json")))
+			throw new ArgumentException("Category with the same name already exists");
 		try
 		{
-			var jsonContent = await File.ReadAllTextAsync(path);
-			return JsonSerializer.Deserialize<RepositoryCategoryMeta>(jsonContent);
+			RepositoryCategory category = new()
+			{
+				Name = name,
+				DataSets = [],
+				Folder = name.ToLowerInvariant(),
+				Icon = icon
+			};
+			var json = JsonSerializer.Serialize(category, RepositoryCategory.JsonSerializerOptions);
+			await File.WriteAllTextAsync(Path.Combine(categoriesPath, $"{category.Folder}.json"), json);
+			return category;
 		}
 		catch (Exception ex)
 		{
 			logController.Exception(ex);
-			return null;
+			throw;
 		}
 	}
 }

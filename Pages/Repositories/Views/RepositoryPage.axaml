@@ -4,14 +4,26 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:vm="using:Minty.Pages.Repositories.ViewModels"
+	xmlns:lang="using:Minty.Localization"
+	xmlns:controls="using:Minty.Components"
 	mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
 	x:Class="Minty.Pages.Repositories.Views.RepositoryPage"
 	x:DataType="vm:RepositoryPageViewModel">
-	<StackPanel Spacing="10">
-		<TextBlock Text="Path:" />
-		<TextBlock Text="{Binding RepositoryPath}" />
-		<TextBlock Text="TODO: Show some stats here" />
-		<Button Content="Add Category" />
+	<StackPanel Spacing="5">
+		<controls:Heading
+			Text="{x:Static lang:Resources.Module_Repository}"
+			Level="1"/>
+		<Border
+			BorderThickness="2"
+	        BorderBrush="#BDBDBD"
+	        CornerRadius="4"
+	        Padding="10,8">
+			<StackPanel Spacing="8">
+				<TextBlock Text="Path:" />
+				<TextBlock Text="{Binding RepositoryPath}" />
+			</StackPanel>
+		</Border>
+		<Button Content="+ Category" Command="{Binding ShowNewCategoryDialogCommand }" />
 	</StackPanel>
 </UserControl>
 

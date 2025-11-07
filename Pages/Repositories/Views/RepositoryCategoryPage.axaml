@@ -1,0 +1,19 @@
+<UserControl
+	xmlns="https://github.com/avaloniaui"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:vm="using:Minty.Pages.Repositories.ViewModels"
+	xmlns:fluent="using:FluentAvalonia.UI.Controls"
+	mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+	x:Class="Minty.Pages.Repositories.Views.RepositoryCategoryPage"
+	x:DataType="vm:RepositoryCategoryPageViewModel">
+	<StackPanel>
+		<StackPanel Orientation="Vertical">
+			<fluent:SymbolIcon Symbol="{Binding Category.Icon}" />
+			<TextBlock Text="{Binding Category.Name}" />
+			<Button Content="Edit" />
+		</StackPanel>
+	</StackPanel>
+</UserControl>
+

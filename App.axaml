@@ -13,5 +13,8 @@
 
     <Application.Styles>
 	    <style:FluentAvaloniaTheme PreferSystemTheme="True" PreferUserAccentColor="True" />
+	    <StyleInclude Source="avares://Minty/Components/Heading.axaml" />
+	    <StyleInclude Source="avares://Minty/Components/FormInput.axaml" />
+	    <StyleInclude Source="avares://Minty/Components/FormInputSbs.axaml" />
     </Application.Styles>
 </Application>

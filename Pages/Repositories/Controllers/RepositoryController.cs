@@ -2,7 +2,7 @@ namespace Minty.Pages.Repositories.Controllers;
 
 [RegisterSingleton]
 public sealed class RepositoryController(LogController logController, AppConfigController appConfigController,
-	RepositoryService repositoryService, RepositoryEvents repositoryEvents, DialogController dialogController)
+	RepositoryService repositoryService, RepositoryEvents repositoryEvents, MessageBoxController messageBoxController)
 {
 	/// <summary>
 	/// Initializes the repository by setting up necessary paths and loading the repository data.
@@ -67,7 +67,7 @@ public sealed class RepositoryController(LogController logController, AppConfigC
 			if (!Directory.Exists(path))
 			{
 				logController.Info($"Selected folder is invalid or does not exist: {path}");
-				dialogController.ShowWarningDialogAsync(Resources.Diag_NewRepo_Warn_InvalidDirectory);
+				messageBoxController.ShowWarningAsync(Resources.Diag_NewRepo_Warn_InvalidDirectory);
 				return;
 			}
 			appConfigController.Config.RepositoryPath = path;
@@ -80,7 +80,7 @@ public sealed class RepositoryController(LogController logController, AppConfigC
 		catch (Exception ex)
 		{
 			logController.Exception(ex);
-			dialogController.ShowExceptionDialogAsync(ex);
+			messageBoxController.ShowExceptionAsync(ex);
 		}
 	}
 
@@ -96,6 +96,40 @@ public sealed class RepositoryController(LogController logController, AppConfigC
 		Repository = null;
 		NavigationItem.IsEnabled = false;
 		repositoryEvents.NewRepositoryApplied(Repository);
+	}
+
+	#endregion
+
+	#region CATEGORY
+	/// <summary>
+	/// Creates a new category in the current repository. The category is added to the repository's collection of categories,
+	/// and the list is sorted by category name in a case-insensitive manner. If no repository is set, an exception is thrown.
+	/// Any encountered exception is logged and displayed in a message box.
+	/// </summary>
+	/// <param name="name">The name of the category to create.</param>
+	/// <param name="icon">The icon of the category to create.</param>
+	/// <returns>Returns a task representing the asynchronous operation. The task result contains the newly created
+	/// <see cref="RepositoryCategory"/> if successful, or null if an error occurs.</returns>
+	/// <exception cref="NullReferenceException">Thrown when no repository is currently set.</exception>
+	public async Task<RepositoryCategory?> CreateCategoryAsync(string name, Symbol icon)
+	{
+		try
+		{
+			if (Repository is null)
+				throw new NullReferenceException("No repository set.");
+			var category = await repositoryService.CreateCategoryAsync(Repository.RootPath, name, icon);
+			Repository.Categories.Add(category);
+			// Sort categories by name
+			Repository.Categories.Sort((x, y) => string.Compare(x.Name, y.Name, StringComparison.OrdinalIgnoreCase));
+			repositoryEvents.CategoriesChanged();
+			return category;
+		}
+		catch (Exception ex)
+		{
+			logController.Exception(ex);
+			messageBoxController.ShowExceptionAsync(ex);
+			return null;
+		}
 	}
 
 	#endregion

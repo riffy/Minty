@@ -55,28 +55,20 @@
 		<Compile Update="Pages\Repositories\Views\RepositoryPage.axaml.cs">
 		  <DependentUpon>RepositoryPage.axaml</DependentUpon>
 		</Compile>
-		<Compile Update="Dialogs\Views\InfoDialog.axaml.cs">
-			<DependentUpon>InfoDialog.axaml</DependentUpon>
-			<SubType>Code</SubType>
-		</Compile>
-		<Compile Update="Dialogs\Views\ErrorDialog.axaml.cs">
-			<DependentUpon>ErrorDialog.axaml</DependentUpon>
-			<SubType>Code</SubType>
-		</Compile>
-		<Compile Update="Dialogs\Views\SuccessDialog.axaml.cs">
-		  <DependentUpon>SuccessDialog.axaml</DependentUpon>
-		  <SubType>Code</SubType>
-		</Compile>
-		<Compile Update="Dialogs\Views\WarningDialog.axaml.cs">
-		  <DependentUpon>WarningDialog.axaml</DependentUpon>
-		  <SubType>Code</SubType>
-		</Compile>
 		<Compile Update="Dialogs\Views\ExceptionDialog.axaml.cs">
 		  <DependentUpon>ExceptionDialog.axaml</DependentUpon>
 		  <SubType>Code</SubType>
 		</Compile>
 		<Compile Update="Pages\Debug\Views\DebugIconsPage.axaml.cs">
 		  <DependentUpon>DevIconPage.axaml</DependentUpon>
+		  <SubType>Code</SubType>
+		</Compile>
+		<Compile Update="Components\FormInputSbs.axaml.cs">
+		  <DependentUpon>FormInputSbs.axaml</DependentUpon>
+		  <SubType>Code</SubType>
+		</Compile>
+		<Compile Update="Dialogs\Views\MessageBox.axaml.cs">
+		  <DependentUpon>MessageBox.axaml</DependentUpon>
 		  <SubType>Code</SubType>
 		</Compile>
 	</ItemGroup>
@@ -94,10 +86,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <AdditionalFiles Include="Dialogs\Views\ErrorDialog.axaml" />
 	  <AdditionalFiles Include="Dialogs\Views\ExceptionDialog.axaml" />
-	  <AdditionalFiles Include="Dialogs\Views\InfoDialog.axaml" />
-	  <AdditionalFiles Include="Dialogs\Views\SuccessDialog.axaml" />
-	  <AdditionalFiles Include="Dialogs\Views\WarningDialog.axaml" />
 	</ItemGroup>
 </Project>

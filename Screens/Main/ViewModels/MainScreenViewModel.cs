@@ -17,7 +17,8 @@ public sealed partial class MainScreenViewModel : ViewModelBase
 		_homePageViewModel = hpvm;
 		CurrentPage = hpvm;
 		LoadNavigationItems();
-		re.OnNewRepository += async (_) => LoadNavigationItems();
+		re.OnNewRepository += async _ => LoadNavigationItems();
+		re.OnCategoriesChanged += async () => LoadNavigationItems();
 	}
 
 	#region NAVIGATION
@@ -63,16 +64,24 @@ public sealed partial class MainScreenViewModel : ViewModelBase
 
 		// Seperator + List of categories
 		NavigationCategories.Add(new NavigationSeperator());
+
 		if (_repositoryController.Repository is null)
+		{
 			NavigationCategories.Add(new NavigationHeader
 			{
 				Name = Resources.Setting_Repository_Not_Selected
 			});
-		else
-			NavigationCategories.Add(new NavigationHeader
-			{
-				Name = string.Format(null, _categoryHeaderComposite, _repositoryController.Repository.Categories.Count)
-			});
+			return;
+		}
+
+		NavigationCategories.Add(new NavigationHeader
+		{
+			Name = string.Format(null, _categoryHeaderComposite, _repositoryController.Repository.Categories.Count)
+		});
+
+		foreach (var category in _repositoryController.Repository.Categories)
+			NavigationCategories.Add(category.GetNavigationItem());
+
 	}
 
 	/// <summary>
@@ -90,6 +99,20 @@ public sealed partial class MainScreenViewModel : ViewModelBase
 		{
 			_logController.Debug($"Screen navigation to {viewModelBase.Name}");
 			CurrentPage = (ViewModelBase)_serviceProvider.GetRequiredService(viewModelBase);
+		}
+		catch (Exception ex)
+		{
+			_logController.Exception(ex);
+		}
+	}
+
+	public void NavigateToCategory(RepositoryCategory category)
+	{
+		try
+		{
+			_logController.Debug($"Screen navigation to category {category.Name}");
+			var page = ActivatorUtilities.CreateInstance<RepositoryCategoryPageViewModel>(_serviceProvider, category);
+			CurrentPage = page;
 		}
 		catch (Exception ex)
 		{
